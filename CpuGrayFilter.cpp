@@ -1,6 +1,6 @@
 #include "CpuGrayFilter.h"
 
-void CpuGrayFilter::run(IImage& inoutImage)
+void CpuGrayFilter::process(IImage& inoutImage)
 {
 	uchar * data = inoutImage.data();
 	for(int i = 0 ; i < inoutImage.size() ; i+=3){

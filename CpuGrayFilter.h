@@ -8,7 +8,7 @@ class CpuGrayFilter : public IFilter
 {
 
 public:
-    virtual void run(IImage& inoutImage);
+    virtual void process(IImage& inoutImage);
     CpuGrayFilter();
     virtual ~CpuGrayFilter();
 };

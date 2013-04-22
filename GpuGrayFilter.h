@@ -7,7 +7,7 @@ class GpuGrayFilter : public IFilter
 
 public:
     GpuGrayFilter();
-	virtual void run(IImage &);
+	virtual void process(IImage &);
 	
     virtual ~GpuGrayFilter();
 };

@@ -36,7 +36,7 @@ GpuGrayFilter::GpuGrayFilter()
 
 }
 
-void GpuGrayFilter::run(IImage & img){
+void GpuGrayFilter::process(IImage & img){
 	runProcess(img.data() , img.size());
 }
 

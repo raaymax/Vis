@@ -1,8 +1,8 @@
-#include "VImageWidget.h"
+#include "ImageWidget.h"
 #include <QLayout>
 #include <QHBoxLayout>
 
-VImageWidget::VImageWidget(QWidget * parent ):
+ImageWidget::ImageWidget(QWidget * parent ):
 	QWidget(parent),
 	scene()
 {
@@ -13,14 +13,14 @@ VImageWidget::VImageWidget(QWidget * parent ):
 	scene.setScaledContents(true);
 }
 
-void VImageWidget::setImage(const IImage& img)
+void ImageWidget::setImage(const IImage& img)
 {
 	QImage imag = img.toQImage();
 	scene.setPixmap(QPixmap::fromImage(imag));
 }
 
 
-VImageWidget::~VImageWidget()
+ImageWidget::~ImageWidget()
 {
 
 }

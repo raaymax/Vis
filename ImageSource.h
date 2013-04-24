@@ -11,6 +11,7 @@ class ImageSource : public ISource
 {
 
 public:
+    ImageSource();
     ImageSource(const QString & filename);
 	const Image & getImage();
     virtual ~ImageSource();

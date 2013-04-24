@@ -6,6 +6,11 @@
 #include <QRgb>
 #include <exceptions/NoFileException.h>
 
+ImageSource::ImageSource()
+{
+    image = Image(512,512);
+}
+
 ImageSource::ImageSource(const QString & filename)
 {
 	QImage qimage(filename);

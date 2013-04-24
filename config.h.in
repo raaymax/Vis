@@ -1,0 +1,6 @@
+
+#cmakedefine CUDA_FOUND
+#ifdef CUDA_FOUND
+    #define USE_CUDA
+#endif
+

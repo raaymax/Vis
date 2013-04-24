@@ -34,11 +34,12 @@ void MainWindow::showFileDialog(){
 
 void MainWindow::run(const QString & filename){
     try{
-        if(source != NULL)
-            delete source;
+        ImageSource * source = new ImageSource(filename); 
         
-        source = new ImageSource(filename); 
-    
+        if(this->source != NULL)
+            delete this->source;
+        this->source = source;
+        
         Image img = source->getImage();
         FilterManager<CpuGrayFilter> filterCPU;
         filterCPU.process(img);

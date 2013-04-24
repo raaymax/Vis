@@ -11,3 +11,4 @@ qt4_automoc(${Viss_SRCS})
 CUDA_ADD_EXECUTABLE(Viss ${Viss_SRCS})
 target_link_libraries(Viss ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY})
 install(TARGETS Viss RUNTIME DESTINATION bin)
+

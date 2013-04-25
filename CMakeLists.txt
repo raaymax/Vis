@@ -19,7 +19,7 @@ set(Viss_SRCS
     main.cpp
     )
     
-set(Viss_CUDA_SRCS 
+set(Viss_CUDA_SRCS
     GpuGrayFilter.cu
     )
 set(Viss_Uis
@@ -37,6 +37,8 @@ else(CUDA_FOUND)
     ADD_EXECUTABLE(${CMAKE_PROJECT_NAME} ${Viss_UI_HDRS} ${Viss_SRCS})
 endif(CUDA_FOUND)
 
-target_link_libraries(${CMAKE_PROJECT_NAME} ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY})
+target_link_libraries(${CMAKE_PROJECT_NAME} ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} plotter_lib)
 install(TARGETS ${CMAKE_PROJECT_NAME} RUNTIME DESTINATION bin)
 
+
+add_subdirectory(plotter)

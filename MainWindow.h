@@ -12,6 +12,7 @@ namespace Ui{
     class MainWindow;
 }
 
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -23,10 +24,17 @@ public:
     virtual ~MainWindow();
 public slots:
     void showFileDialog();
-    void run(const QString & filename);
+    void load(const QString & filename);
+	void load(const QStringList & files);
+	void run();
+	
+signals:
+	void refreshed();
+	
+protected:
+	virtual void paintEvent(QPaintEvent *e);
 	
 private:
-	bool refreshed;
     ImageSource * source;
     ImageWidget * gpuViewer;
     ImageWidget * cpuViewer;

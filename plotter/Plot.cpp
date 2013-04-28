@@ -1,43 +1,46 @@
 #include "Plot.h"
 #include <QDebug>
+#include <iostream>
 #include <QPen>
+#include "Plotter.h"
 
-
-Plot::Plot(QGraphicsItem * parent):
+Plot::Plot(const QColor & plotColor, QGraphicsItem * parent):
 	QGraphicsItem(parent),
-	average(0)
+	average(0),
+	max(0),
+	plotter(NULL),
+	averagePen(plotColor),
+	plotPen(plotColor)
 {
+	averagePen.setWidth(1);
+	plotPen.setWidth(2);
 }
 
 
 void Plot::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-	QPen pen(plotColor);
-	pen.setWidth(1);
-	painter->setPen(pen);
+//	std::cout << "painting" << painter << std::endl;
 	
-	qreal av = boundingRect().height()-getAverage();
+	painter->setPen(averagePen);
+	
+	qreal av = boundingRect().height()-((plotter!=NULL)?getAverage()*plotter->getScale():getAverage());
 	QString avg = "Avg: ";
 	avg += QString::number(getAverage());
 	painter->drawText(QPointF(5,av-5),avg);
 	painter->drawLine(0,av,boundingRect().width(),av);
-	pen.setWidth(2);
-	painter->setPen(pen);
+
+	painter->setPen(plotPen);
 	QPolygonF poly(QVector<QPointF>::fromList(getPoints()));
 	painter->drawPolyline(poly);
 	
 }
 
+void Plot::setPlotter(Plotter * p){
+	plotter = p;
+}
+
 QList<QPointF> Plot::getPoints(){
-	QList<QPointF> points ;
-	qreal step = boundingRect().width()/(list.count()-1);
-	qreal x = 0;
-	qreal yfix = boundingRect().height();
-	for(QList<qreal>::iterator it = list.begin() ; it < list.end() ; it++){
-		points.append(QPointF(x,yfix-(*it)));
-		x+=step;
-	}
-	
+
 	return points;
 }
 
@@ -50,8 +53,26 @@ void Plot::addValue(qreal val){
 		sum += (*it);
 	}
 	average = sum/list.count();
+	if(val > max){ 
+		max = val;
+	}
+	if(plotter != NULL) plotter->fit(getMaximum());
+	
+	
+	points.clear();
+	qreal step = boundingRect().width()/(list.count()-1);
+	qreal x = 0;
+	qreal yfix = boundingRect().height();
+	for(QList<qreal>::iterator it = list.begin() ; it < list.end() ; it++){
+		points.append(QPointF(x,yfix-((plotter!=NULL)?(*it)*plotter->getScale():(*it))));
+		x+=step;
+	}
+	
+	update();
 }
-
+qreal Plot::getMaximum(){
+	return max;
+}
 qreal Plot::getAverage(){
 	return average;
 }

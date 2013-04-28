@@ -3,7 +3,9 @@
 #include <QWidget>
 #include <QGraphicsView>
 #include <QGraphicsScene>
-#include "Plot.h"
+#include <QThread>
+
+class Plot;
 
 class Plotter : public QGraphicsView
 {
@@ -13,8 +15,10 @@ public:
     virtual ~Plotter();
 	void reset();
 	void addPlot(Plot * plot);
-	
+	void fit(qreal _max);
+	qreal getScale();
 private:
+	qreal max;
 	QList<Plot *> plots;
 	QGraphicsScene * scene;
 };

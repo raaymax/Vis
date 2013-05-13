@@ -4,15 +4,15 @@ include(${QT_USE_FILE})
 
 set(CMAKE_AUTOMOC TRUE)
 
-set(plotter_srcs Plotter.cpp)
-set(plotter_hdrs Plotter.h)
+set(plotter_srcs Legend.cpp Points.cpp Plot.cpp Plotter.cpp)
+set(plotter_hdrs Legend.h Points.h Plot.h Plotter.h)
 
 foreach(head ${plotter_hdrs})
     configure_file(${head} ${PROJECT_BINARY_DIR}/Include/${head} COPYONLY)
 endforeach(head)
 
 
-INCLUDE_DIRECTORIES( ${QT_INCLUDE_DIR} ${QT_QTGUI_INCLUDE_DIR} )
+INCLUDE_DIRECTORIES(${PROJECT_BINARY_DIR}/Include ${QT_INCLUDE_DIR} ${QT_QTGUI_INCLUDE_DIR} )
 
 
 

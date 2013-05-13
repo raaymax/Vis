@@ -4,8 +4,8 @@ include(${QT_USE_FILE})
 
 set(CMAKE_AUTOMOC TRUE)
 
-set(plotter_srcs Legend.cpp Points.cpp Plot.cpp Plotter.cpp)
-set(plotter_hdrs Legend.h Points.h Plot.h Plotter.h)
+set(plotter_srcs Points.cpp Plot.cpp Plotter.cpp)
+set(plotter_hdrs Points.h Plot.h Plotter.h)
 
 foreach(head ${plotter_hdrs})
     configure_file(${head} ${PROJECT_BINARY_DIR}/Include/${head} COPYONLY)

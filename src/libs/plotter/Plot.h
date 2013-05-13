@@ -12,8 +12,10 @@ class Plot : public Base_Plot
     
 public:
     Plot();
-    Plot(Points & p, QColor &c);
+    Plot(const QColor &c);
+    Plot(const Points & p,const QColor &c);
     Plot(const Plot& other);
+    
     virtual ~Plot();
     virtual Plot& operator=(const Plot& other);
     QColor & color();

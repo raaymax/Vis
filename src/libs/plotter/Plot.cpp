@@ -6,7 +6,13 @@ Plot::Plot():
 {
 
 }
-Plot::Plot(Points & p, QColor &c):
+Plot::Plot(const QColor &c):
+    Base_Plot(Points(),c),
+    label("Plot")
+{
+    
+}
+Plot::Plot(const Points & p,const QColor &c):
     Base_Plot(p,c),
     label("Plot")
 {

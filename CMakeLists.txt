@@ -19,7 +19,7 @@ include_directories(
     )
 
 #file(GLOB_RECURSE test_srcs tests/*.cpp)
-set(test_srcs tests/PlotterTests.cpp)
+set(test_srcs src/main.cpp)
 
 
 add_executable(Test ${test_srcs})

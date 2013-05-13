@@ -27,8 +27,8 @@ void Plotter::paintEvent( QPaintEvent* ){
    
     p.setRenderHint(QPainter::Antialiasing);
     
-    qreal max = plots.first()->max();
-    foreach(const Plot *plot , plots){
+    qreal max = first()->max();
+    foreach(const Plot *plot , *this){
         if(max < plot->max()) max = plot->max();
     }
     qreal a = h/max;
@@ -61,7 +61,7 @@ void Plotter::paintEvent( QPaintEvent* ){
     p.setPen(pen);
     pen.setWidth(2);
     
-    foreach(const Plot *plot , plots){
+    foreach(const Plot *plot , *this){
         const Points & pl = plot->points();
         pen.setColor(plot->color());
         p.setPen(pen);
@@ -80,16 +80,23 @@ void Plotter::paintEvent( QPaintEvent* ){
     p.setPen(Qt::black);
     if(frame) p.drawRect(0,0,w-1,h-1);
 }
-void Plotter::addPlot(Plot & plot){
-    plots.append(&plot);
+Plot & Plotter::addPlot(){
+    append(new Plot());
+    return *last();
 }
 
+Plot & Plotter::addPlot(const QColor & col){
+    append(new Plot(col));
+    return *last();
+}
 
-void Plotter::addPlot(Points & plot){
+Plot & Plotter::addPlot(const Points & plot){
     QColor col(qrand()%256,qrand()%256,qrand()%256);
     addPlot(plot,col);
+    return *last();
 }
 
-void Plotter::addPlot(Points & plot,QColor & col){
-    plots.append(new Plot(plot,col));
+Plot & Plotter::addPlot(const Points & plot,const QColor & col){
+    append(new Plot(plot,col));
+    return *last();
 }

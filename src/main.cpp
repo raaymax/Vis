@@ -1,11 +1,9 @@
-#include <gtest/gtest.h>
 #include <Plotter.h>
 #include <QApplication>
 #include <QTimer>
 
-TEST(Plotter, Simple){
-
-    
+int main(int argc , char ** argv){
+    QApplication app(argc,argv);
     Plotter p;
     p.setFrame(false);
     p.setScale(true);
@@ -19,10 +17,10 @@ TEST(Plotter, Simple){
         l2.append(qrand()%40+20);
         l3.append(qrand()%40);
     }
-
+    
     p.addPlot(l);
     p.addPlot(l2);
     p.addPlot(l3);
-
-
+    
+    return app.exec();
 }

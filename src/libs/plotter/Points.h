@@ -34,6 +34,7 @@ public:
     
     Point max() const;
     Point min() const;
+    Point average() const;
     
 };
 

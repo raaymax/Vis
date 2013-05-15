@@ -6,15 +6,16 @@
 #include <Points.h>
 
 typedef QPair<Points, QColor> Base_Plot;
+class Plotter;
 
-class Plot : public Base_Plot
+class Plot : public QObject, protected Base_Plot
 {
-    
+    Q_OBJECT
 public:
-    Plot();
-    Plot(const QColor &c);
-    Plot(const Points & p,const QColor &c);
-    Plot(const Plot& other);
+    Plot(Plotter * parent);
+    Plot(Plotter * parent, const QColor &c);
+    Plot(Plotter * parent, const Points & p,const QColor &c);
+    Plot(Plotter * parent, const Plot& other);
     
     virtual ~Plot();
     virtual Plot& operator=(const Plot& other);
@@ -22,6 +23,11 @@ public:
     const QColor & color() const;
     Points & points();
     const Points & points() const;
+    
+    Point average() const{
+        return points().average();
+    }
+    
     Point max() const{
         return points().max();
     }
@@ -30,13 +36,27 @@ public:
     }
     void add(Point p){
         points().append(p);
+        if(default_max_points_count < points().count())
+            points().pop_front();
+        emit changed();
     }
-    QString getLabel(){return label;}
-    void setLabel(QString lab){label = lab;}
+    
+    void clear(){
+        first.clear();
+        emit changed();
+    }
+    QString getLabel(){return label_;}
+    void setLabel(QString lab){label_ = lab;}
+signals:
+    void changed();
     
 private:
-    QString label;
+    void registerInPlotter();
     
+    QString label_;
+    Plotter * parent_;
+    
+    static int default_max_points_count;
 };
 
 #endif // PLOT_H

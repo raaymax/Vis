@@ -7,14 +7,24 @@
 #include <QPair>
 #include <Plot.h>
 
-class Plotter : public QWidget, public QList<Plot* >{
+class Plotter : public QWidget{
     Q_OBJECT
 public:
     Plotter(QWidget * parent = 0);
-    Plot & addPlot();
-    Plot & addPlot(const QColor &color);
-    Plot & addPlot(const Points & plot);
-    Plot & addPlot(const Points & plot, const QColor &color );
+    virtual ~Plotter();
+    Plot * createPlot();
+    Plot * createPlot(const QColor &color);
+    Plot * createPlot(const Points & plot);
+    Plot * createPlot(const Points & plot, const QColor &color );
+    
+    
+    void registerPlot(Plot * plot);
+    void detachPlot(Plot * plot);
+    
+    void clearPlots();
+    void clearAll();
+    
+    QList<Plot* > & getPlots(){return plots;}
     
     void setFrame(bool f){frame = f;}
     void setScale(bool f){scale = f;}
@@ -25,6 +35,7 @@ private:
     bool frame;
     bool scale;
     qreal scaleFactor;
+    QList<Plot* > plots;
 };
 
 

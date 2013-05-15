@@ -12,6 +12,14 @@ Plotter::Plotter(QWidget * parent):
 {
     setFixedSize(500,150);
 }
+
+Plotter::~Plotter()
+{
+    foreach(Plot * p , plots){
+        delete p;
+    }
+}
+
 void Plotter::paintEvent( QPaintEvent* ){
     QPainter p(this);
     
@@ -27,12 +35,11 @@ void Plotter::paintEvent( QPaintEvent* ){
    
     p.setRenderHint(QPainter::Antialiasing);
     
-    qreal max = first()->max();
-    foreach(const Plot *plot , *this){
+    qreal max = plots.first()->max();
+    foreach(const Plot *plot , plots){
         if(max < plot->max()) max = plot->max();
     }
     qreal a = h/max;
-    qDebug() << max;
     int linesCount = 4;
     
     if(scale){
@@ -61,18 +68,23 @@ void Plotter::paintEvent( QPaintEvent* ){
     p.setPen(pen);
     pen.setWidth(2);
     
-    foreach(const Plot *plot , *this){
+    foreach(const Plot *plot , plots){
         const Points & pl = plot->points();
         pen.setColor(plot->color());
         p.setPen(pen);
         
+        p.drawLine(0,h-(plot->average()*a),w,h-(plot->average()*a));
+        
         qreal x = 0;
         qreal y = 0;
         qreal step = w/(pl.size()-1);
+        bool start = true;
         foreach(const qreal & r, pl){
-            if(pl.first() != r){
+            if(!start){
                 p.drawLine(x,h-(y*a),x+step,h-(r*a));
                 x += step;
+            }else{
+                 start = !start;
             }
             y = r;
         }
@@ -80,23 +92,41 @@ void Plotter::paintEvent( QPaintEvent* ){
     p.setPen(Qt::black);
     if(frame) p.drawRect(0,0,w-1,h-1);
 }
-Plot & Plotter::addPlot(){
-    append(new Plot());
-    return *last();
+Plot * Plotter::createPlot(){
+    return new Plot(this);
 }
 
-Plot & Plotter::addPlot(const QColor & col){
-    append(new Plot(col));
-    return *last();
+Plot * Plotter::createPlot(const QColor & col){
+    return new Plot(this,col);
 }
 
-Plot & Plotter::addPlot(const Points & plot){
+Plot * Plotter::createPlot(const Points & plot){
     QColor col(qrand()%256,qrand()%256,qrand()%256);
-    addPlot(plot,col);
-    return *last();
+    return createPlot(plot,col);
 }
 
-Plot & Plotter::addPlot(const Points & plot,const QColor & col){
-    append(new Plot(plot,col));
-    return *last();
+Plot * Plotter::createPlot(const Points & plot,const QColor & col){
+    return new Plot(this,plot,col);
+}
+
+void Plotter::registerPlot(Plot * plot){
+    if(plots.indexOf(plot)==-1){
+        plots.append(plot);
+    }
+    
+}
+void Plotter::detachPlot(Plot * plot){
+    plots.removeAll(plot);
+}
+
+void Plotter::clearPlots(){
+    foreach(Plot * p , plots){
+        p->clear();
+    }
+}
+void Plotter::clearAll(){
+    foreach(Plot * p , plots){
+        delete p;
+    }
+    plots.clear();
 }

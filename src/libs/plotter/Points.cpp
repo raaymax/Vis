@@ -39,3 +39,11 @@ Point Points::min() const{
     }
     return min;
 }
+
+Point Points::average() const{
+    Point sum = 0;
+    foreach(const Point & p , *this){
+        sum += p;
+    }
+    return sum/count();
+}

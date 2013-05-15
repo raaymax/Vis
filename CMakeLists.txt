@@ -19,9 +19,9 @@ include_directories(
     )
 
 #file(GLOB_RECURSE test_srcs tests/*.cpp)
-set(test_srcs src/main.cpp)
+set(test_srcs src/MainWindow.cpp src/main.cpp)
 
-
+set(CMAKE_AUTOMOC TRUE)
 add_executable(Test ${test_srcs})
 target_link_libraries(Test 
     plotter 

@@ -1,4 +1,4 @@
-#include "CpuGrayFilter.h"
+#include <CpuGrayFilter.h>
 
 void CpuGrayFilter::process(IImage& inoutImage)
 {

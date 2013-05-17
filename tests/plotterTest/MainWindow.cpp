@@ -20,7 +20,6 @@ MainWindow::MainWindow():QMainWindow(){
     plotter->setScale(true);
     plotter->setScaleFactor(1);
     plotter->createPlot(Qt::red);
-	p->add(20);
  //   plotter->createPlot(Qt::blue);
     connect(timer,SIGNAL(timeout()),this,SLOT(newPoint()));
     timer->start(1000);

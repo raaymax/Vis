@@ -4,7 +4,7 @@
 #include <QObject>
 
 typedef qreal Point;
-typedef QList<qreal> Base_Points;
+typedef QList<Point> Base_Points;
 
 class Points:public QObject, public Base_Points
 {
@@ -15,22 +15,10 @@ public:
     virtual ~Points();
     virtual Points& operator=(const Points& other);
     
-    void push_front(Point p){
-        prepend(p);
-    }
-    void push_back(Point p){
-        append(p);
-    }
-    Point pop_front(){
-        Point p = first();
-        removeFirst();
-        return p;
-    }
-    Point pop_back(){
-        Point p = last();
-        removeLast();
-        return p;
-    }
+    void push_front(const Point & p);
+    void push_back(const Point & p);
+    Point pop_front();
+    Point pop_back();
     
     Point max() const;
     Point min() const;

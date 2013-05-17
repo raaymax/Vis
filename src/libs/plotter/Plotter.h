@@ -10,6 +10,7 @@
 class Plotter : public QWidget{
     Q_OBJECT
 public:
+	///TODO: Ustawianie rozmiarów wykresu
     Plotter(QWidget * parent = 0);
     virtual ~Plotter();
     Plot * createPlot();
@@ -17,6 +18,9 @@ public:
     Plot * createPlot(const Points & plot);
     Plot * createPlot(const Points & plot, const QColor &color );
     
+	Plot * getPlot(int i);
+	//funkcja zwraca pierwszy napotkany wykres z daną etykietą
+	Plot * getPlot(const QString& label);
     
     void registerPlot(Plot * plot);
     void detachPlot(Plot * plot);
@@ -24,18 +28,18 @@ public:
     void clearPlots();
     void clearAll();
     
-    QList<Plot* > & getPlots(){return plots;}
+    QList<Plot* > & getPlots();
     
-    void setFrame(bool f){frame = f;}
-    void setScale(bool f){scale = f;}
-    void setScaleFactor(qreal f){scaleFactor = f;}
+    void setFrame(bool f);
+    void setScale(bool f);
+    void setScaleFactor(qreal f);
 protected:
     void paintEvent( QPaintEvent* );
 private:
-    bool frame;
-    bool scale;
-    qreal scaleFactor;
-    QList<Plot* > plots;
+    bool frame_;
+    bool scale_;
+    qreal scaleFactor_;
+    QList<Plot* > plots_;
 };
 
 

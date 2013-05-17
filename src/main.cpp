@@ -1,4 +1,5 @@
 #include <Plotter.h>
+
 #include <QApplication>
 #include <QTimer>
 #include "MainWindow.h"
@@ -11,4 +12,5 @@ int main(int argc , char ** argv){
     mainw.show();
     
     return app.exec();
+
 }

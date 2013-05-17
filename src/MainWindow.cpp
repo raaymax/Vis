@@ -10,8 +10,9 @@
 #include <QPushButton>
 
 MainWindow::MainWindow():QMainWindow(){
-    setLayout(new QVBoxLayout);
-    plotter = new Plotter(this);
+   // setLayout(new QVBoxLayout);
+    plotter = new Plotter();
+	setCentralWidget(plotter);
     timer = new QTimer();
     qsrand( QTime::currentTime().msec());
     
@@ -19,20 +20,20 @@ MainWindow::MainWindow():QMainWindow(){
     plotter->setScale(true);
     plotter->setScaleFactor(1);
     plotter->createPlot(Qt::red);
-    plotter->createPlot(Qt::green);
-    plotter->createPlot(Qt::blue);
+	p->add(20);
+ //   plotter->createPlot(Qt::blue);
     connect(timer,SIGNAL(timeout()),this,SLOT(newPoint()));
     timer->start(1000);
-    QPushButton * clear = new QPushButton(this);
-    connect(clear,SIGNAL(pressed()),this,SLOT(clearPlotter()));
+//    QPushButton * clear = new QPushButton(this);
+   // connect(clear,SIGNAL(pressed()),this,SLOT(clearPlotter()));
 }
 
 void MainWindow::newPoint(){
     int i = 0;
-    for(QList<Plot *>::iterator it = plotter->getPlots().begin(); it < plotter->getPlots().end(); it++){
-        (*it)->add(qrand()%100);
-    }
-    timer->start(500);
+
+    plotter->getPlots().first()->add(qrand()%100);
+    
+    timer->start(100);
 }
 void MainWindow::clearPlotter(){
     plotter->clearPlots();

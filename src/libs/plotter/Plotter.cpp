@@ -5,56 +5,54 @@
 
 Plotter::Plotter(QWidget * parent):
     QWidget(parent),
-    frame(true),
-    scale(true),
-    scaleFactor(1)
-    
+    frame_(true),
+    scale_(true),
+    scaleFactor_(1)
 {
-    setFixedSize(500,150);
+   // setFixedSize(500,150);
 }
 
 Plotter::~Plotter()
 {
-    foreach(Plot * p , plots){
+	foreach(Plot * p , plots_){
         delete p;
     }
 }
 
-void Plotter::paintEvent( QPaintEvent* ){
+void Plotter::paintEvent( QPaintEvent* )
+{
     QPainter p(this);
-    
     qreal w = width();
-    if(scale) w-=40;
-
     qreal h = height();
-    
+    if(scale_) w-=40;
+	
+	//białe tło i wygładanie krawędzi
     p.setBrush(Qt::white);
     p.setPen(Qt::white);
     p.drawRect(0,0,w-1,h-1);
-    //p.setBackground(QBrush(Qt::white));
-   
     p.setRenderHint(QPainter::Antialiasing);
     
-    qreal max = plots.first()->max();
-    foreach(const Plot *plot , plots){
+	//obliczanie korekty do skalowania
+	qreal max = plots_.first()->max();
+	foreach(const Plot *plot , plots_){
         if(max < plot->max()) max = plot->max();
     }
     qreal a = h/max;
     int linesCount = 4;
     
-    if(scale){
+	
+	//rysowanie skali
+	if(scale_){
         p.setPen(Qt::black);
         p.drawText(w+2,h,QString::number(0));
-        p.drawText(w+2,10,QString::number(max*scaleFactor));
+		p.drawText(w+2,10,QString::number(max*scaleFactor_));
     }
-    
     p.setPen(Qt::gray);
-    
     for(int i = 0 ; i < linesCount ; i++){
         qreal lh = h/5*(i+1);
-        qreal ll = (max/5)*(linesCount-i)*scaleFactor;
+		qreal ll = (max/5)*(linesCount-i)*scaleFactor_;
         p.drawLine(0,lh,w,lh);
-        if(scale){
+		if(scale_){
             p.setPen(Qt::black);
             p.drawText(w+2,lh+4,QString::number(ll));
             p.setPen(Qt::gray);
@@ -63,17 +61,20 @@ void Plotter::paintEvent( QPaintEvent* ){
     p.drawLine(0,0,w,0);
     p.drawLine(0,h,w,h);
     
-    //QBrush brush();
-    QPen pen(Qt::black);
-    p.setPen(pen);
-    pen.setWidth(2);
     
-    foreach(const Plot *plot , plots){
+    QPen pen(Qt::black);
+    pen.setWidth(2);
+    p.setPen(pen);
+	
+	//rysowanie wykresów
+	foreach(const Plot *plot , plots_){
+		p.setPen(plot->color());
+		p.drawLine(0,h-(plot->average()*a),w,h-(plot->average()*a));
+		
         const Points & pl = plot->points();
         pen.setColor(plot->color());
         p.setPen(pen);
         
-        p.drawLine(0,h-(plot->average()*a),w,h-(plot->average()*a));
         
         qreal x = 0;
         qreal y = 0;
@@ -89,44 +90,93 @@ void Plotter::paintEvent( QPaintEvent* ){
             y = r;
         }
     }
+    
+    //ramka wokół wykresu
     p.setPen(Qt::black);
-    if(frame) p.drawRect(0,0,w-1,h-1);
+	if(frame_) p.drawRect(0,0,w-1,h-1);
 }
-Plot * Plotter::createPlot(){
+
+Plot * Plotter::createPlot()
+{
     return new Plot(this);
 }
 
-Plot * Plotter::createPlot(const QColor & col){
+Plot * Plotter::createPlot(const QColor & col)
+{
     return new Plot(this,col);
 }
 
-Plot * Plotter::createPlot(const Points & plot){
+Plot * Plotter::createPlot(const Points & plot)
+{
     QColor col(qrand()%256,qrand()%256,qrand()%256);
     return createPlot(plot,col);
 }
 
-Plot * Plotter::createPlot(const Points & plot,const QColor & col){
+Plot * Plotter::createPlot(const Points & plot,const QColor & col)
+{
     return new Plot(this,plot,col);
 }
 
-void Plotter::registerPlot(Plot * plot){
-    if(plots.indexOf(plot)==-1){
-        plots.append(plot);
+Plot * Plotter::getPlot(int i)
+{
+	return plots_.at(i);
+}
+
+Plot * Plotter::getPlot(const QString& label)
+{
+	foreach(Plot * p , plots_){
+		if(p->getLabel() == label)return p;
+	}
+	return NULL;
+}
+
+void Plotter::registerPlot(Plot * plot)
+{
+	if(plots_.indexOf(plot)==-1){
+		plots_.append(plot);
     }
     
 }
-void Plotter::detachPlot(Plot * plot){
-    plots.removeAll(plot);
+
+void Plotter::detachPlot(Plot * plot)
+{
+	plots_.removeAll(plot);
 }
 
 void Plotter::clearPlots(){
-    foreach(Plot * p , plots){
+	foreach(Plot * p , plots_){
         p->clear();
     }
 }
+
 void Plotter::clearAll(){
-    foreach(Plot * p , plots){
+	foreach(Plot * p , plots_){
         delete p;
     }
-    plots.clear();
+    plots_.clear();
 }
+
+QList<Plot* > & Plotter::getPlots()
+{
+	return plots_;
+}
+
+void Plotter::setFrame(bool f)
+{
+	frame_ = f;
+}
+
+void Plotter::setScale(bool f)
+{
+	scale_ = f;
+}
+
+void Plotter::setScaleFactor(qreal f)
+{
+	scaleFactor_ = f;
+}
+
+
+
+
+

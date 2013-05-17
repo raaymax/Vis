@@ -1,7 +1,7 @@
 #include "Plot.h"
 #include "Plotter.h"
 
-int Plot::default_max_points_count = 100;
+int Plot::default_max_points_count = 10;
 
 Plot::Plot(Plotter * parent):
     parent_(parent),
@@ -45,21 +45,64 @@ Plot& Plot::operator=(const Plot& other)
     return *this;
 }
 
-QColor & Plot::color(){
-    return second;
+void Plot::setColor(const QColor & color)
+{
+    second = color;
 }
 
-const QColor & Plot::color() const{
+const QColor & Plot::color() const
+{
     return second;
 }
-Points & Plot::points(){
+Points & Plot::points()
+{
     return first;
 }
-const Points & Plot::points() const{
+const Points & Plot::points() const
+{
     return first;
 }
 
-void Plot::registerInPlotter(){
+Point Plot::average() const
+{
+	return points().average();
+}
+
+Point Plot::max() const
+{
+	return points().max();
+}
+Point Plot::min() const
+{
+	return points().min();
+}
+void Plot::add(Point p)
+{
+	points().append(p);
+	if(default_max_points_count < points().count())
+		points().pop_front();
+	emit changed();
+}
+
+void Plot::clear()
+{
+	first.clear();
+	emit changed();
+}
+
+const QString & Plot::getLabel()const
+{
+	return label_;
+}
+
+void Plot::setLabel(const QString & lab)
+{
+	label_ = lab;
+	emit labelChanged();
+}
+
+void Plot::registerInPlotter()
+{
     parent_->registerPlot(this);
     connect(this,SIGNAL(changed()),parent_,SLOT(update()));
 }

@@ -1,25 +1,7 @@
-find_package(Boost REQUIRED)
-find_package(Qt4 REQUIRED)
+file(GLOB files "*/*.[cpp|cu]")
+file(GLOB hdrs "*/*.[cpp|cu]")
+move_to_includes(${hdrs})
 
+CUDA_ADD_LIBRARY(filters ${files})
+#target_link_libraries(filters)
 
-find_package(CUDA)
-
-INCLUDE(${QT_USE_FILE})
-
-
-set(CMAKE_AUTOMOC TRUE)
-
-
-include_directories(${QT_INCLUDES} ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
-
-if(CUDA_FOUND)
-    CUDA_ADD_EXECUTABLE(${CMAKE_PROJECT_NAME} ${Viss_UI_HDRS}  ${Viss_SRCS} ${Viss_CUDA_SRCS})
-else(CUDA_FOUND)
-    ADD_EXECUTABLE(${CMAKE_PROJECT_NAME} ${Viss_UI_HDRS} ${Viss_SRCS})
-endif(CUDA_FOUND)
-
-target_link_libraries(${CMAKE_PROJECT_NAME} ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} plotter_lib)
-install(TARGETS ${CMAKE_PROJECT_NAME} RUNTIME DESTINATION bin)
-
-
-add_subdirectory(plotter)

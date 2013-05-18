@@ -6,30 +6,27 @@ find_package(CUDA)
 
 INCLUDE(${QT_USE_FILE})
 
-configure_file ( "${PROJECT_SOURCE_DIR}/config.h.in" "${PROJECT_BINARY_DIR}/config.h")
+configure_file ( "${CMAKE_CURRENT_SOURCE_DIR}/config.h.in" "${PROJECT_BINARY_DIR}/config.h")
 
+include_directories(${QT_INCLUDES} ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
 
 set(Viss_SRCS    
     Image.cpp 
     ImageFactory.cpp 
-    CpuGrayFilter.cpp  
     ImageSource.cpp 
-    ImageWidget.cpp 
-    MainWindow.cpp 
+    gui/ImageWidget.cpp 
+    gui/MainWindow.cpp 
     main.cpp
     )
-    
-set(Viss_CUDA_SRCS
-    GpuGrayFilter.cu
-    )
+
 set(Viss_Uis
-    MainWindow.ui
+	gui/MainWindow.ui
     )
+
 set(CMAKE_AUTOMOC TRUE)
 QT4_WRAP_UI(Viss_UI_HDRS ${Viss_Uis})
 #qt4_automoc(${Viss_SRCS})
 
-include_directories(${QT_INCLUDES} ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
 
 if(CUDA_FOUND)
     CUDA_ADD_EXECUTABLE(${CMAKE_PROJECT_NAME} ${Viss_UI_HDRS}  ${Viss_SRCS} ${Viss_CUDA_SRCS})
@@ -37,8 +34,8 @@ else(CUDA_FOUND)
     ADD_EXECUTABLE(${CMAKE_PROJECT_NAME} ${Viss_UI_HDRS} ${Viss_SRCS})
 endif(CUDA_FOUND)
 
-target_link_libraries(${CMAKE_PROJECT_NAME} ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} plotter_lib)
-install(TARGETS ${CMAKE_PROJECT_NAME} RUNTIME DESTINATION bin)
+target_link_libraries(${CMAKE_PROJECT_NAME} ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} plotter)
 
 
-add_subdirectory(plotter)
+add_subdirectory(libs/plotter)
+add_subdirectory(filters)

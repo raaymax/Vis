@@ -4,8 +4,7 @@
 #include <QFileDialog>
 #include "ImageWidget.h"
 #include "ImageSource.h"
-#include <plotter/Plot.h>
-#include <plotter/Plotter.h>
+#include <Plotter.h>
 #include <QPaintEvent>
 
 namespace Ui{

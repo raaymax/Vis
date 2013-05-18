@@ -1,15 +1,17 @@
 #include <QtGui/QApplication>
 #include <QString>
 #include "config.h"
-#include "ImageWidget.h"
+#include "gui/ImageWidget.h"
 #include "ImageSource.h"
-#include "CpuGrayFilter.h"
+#include <CpuGrayFilter.h>
+
 #ifdef USE_CUDA
-#include "GpuGrayFilter.h"
+#include <GpuGrayFilter.h>
 #endif
-#include "FilterManager.h"
+
+#include <FilterManager.h>
 #include "exceptions/IException.h"
-#include "MainWindow.h"
+#include "gui/MainWindow.h"
 
 int main(int argc, char** argv)
 {

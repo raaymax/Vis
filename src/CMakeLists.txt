@@ -6,9 +6,9 @@ find_package(CUDA)
 
 INCLUDE(${QT_USE_FILE})
 
-configure_file ( "${CMAKE_CURRENT_SOURCE_DIR}/config.h.in" "${PROJECT_BINARY_DIR}/config.h")
+configure_file ( "${CMAKE_CURRENT_SOURCE_DIR}/config.h.in" "${PROJECT_BINARY_DIR}/Include/config.h")
 
-include_directories(${QT_INCLUDES} ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(${QT_INCLUDES} ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR} ${PROJECT_BINARY_DIR}/Include)
 
 set(Viss_SRCS    
     Image.cpp 
@@ -34,8 +34,9 @@ else(CUDA_FOUND)
     ADD_EXECUTABLE(${CMAKE_PROJECT_NAME} ${Viss_UI_HDRS} ${Viss_SRCS})
 endif(CUDA_FOUND)
 
-target_link_libraries(${CMAKE_PROJECT_NAME} ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} plotter)
+target_link_libraries(${CMAKE_PROJECT_NAME} ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} plotter filters)
 
 
 add_subdirectory(libs/plotter)
 add_subdirectory(filters)
+add_subdirectory(interfaces)

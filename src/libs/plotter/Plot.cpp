@@ -1,7 +1,7 @@
 #include "Plot.h"
 #include "Plotter.h"
 
-int Plot::default_max_points_count = 10;
+int Plot::default_max_points_count = 100;
 
 Plot::Plot(Plotter * parent):
     parent_(parent),

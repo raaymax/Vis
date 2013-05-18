@@ -90,7 +90,7 @@ void Plotter::paintEvent( QPaintEvent* )
             y = r;
         }
     }
-    
+    p.setBrush(Qt::transparent);
     //ramka wokół wykresu
     p.setPen(Qt::black);
 	if(frame_) p.drawRect(0,0,w-1,h-1);

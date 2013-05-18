@@ -16,7 +16,7 @@ MainWindow::MainWindow():QMainWindow(){
     timer = new QTimer();
     qsrand( QTime::currentTime().msec());
     
-    plotter->setFrame(false);
+    plotter->setFrame(true);
     plotter->setScale(true);
     plotter->setScaleFactor(1);
     plotter->createPlot(Qt::red);

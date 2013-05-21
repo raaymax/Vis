@@ -1,18 +1,11 @@
 
-set(INCLUDES ${PROJECT_BINARY_DIR}/Include)
-
-function( move_to_includes )
-    foreach(file ${ARGV})
-        get_filename_component(fname ${file} NAME)
-        configure_file(${file}  ${INCLUDES}/${fname} COPYONLY)
-    endforeach(file)
-endfunction( move_to_includes )
+set(INCLUDES 
+	${CMAKE_CURRENT_SOURCE_DIR}
+	${PROJECT_SOURCE_DIR}/src 
+	${PROJECT_BINARY_DIR}/Include 
+)
 
 
-function (ADD_EXE)
-    if(CUDA_FOUND)
-        CUDA_ADD_EXECUTABLE(${CMAKE_PROJECT_NAME} ${Viss_UI_HDRS}  ${Viss_SRCS} ${Viss_CUDA_SRCS})
-    else(CUDA_FOUND)
-        ADD_EXECUTABLE(${CMAKE_PROJECT_NAME} ${Viss_UI_HDRS} ${Viss_SRCS})
-    endif(CUDA_FOUND)
-endfunction (ADD_EXE)
+function( add_includes )
+	include_directories(${ARGV} ${INCLUDES})
+endfunction(add_includes)

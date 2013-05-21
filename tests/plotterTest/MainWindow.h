@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <Plotter.h>
+#include <plotter/Plotter.h>
 
 class QTime;
 class MainWindow: public QMainWindow{

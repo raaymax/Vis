@@ -1,5 +1,3 @@
-#include <Plotter.h>
-
 #include <QApplication>
 #include <QTimer>
 #include "MainWindow.h"

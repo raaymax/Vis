@@ -5,7 +5,7 @@
 #include <QDebug>
 #include <QtCore/qmath.h>
 #include <QTimer>
-#include <Plot.h>
+#include <plotter/Plot.h>
 #include <QList>
 #include <QPushButton>
 

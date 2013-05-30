@@ -8,6 +8,7 @@ void printDevProp(cudaDeviceProp devProp)
 	printf("Major revision number:         %d\n",  devProp.major);
 	printf("Minor revision number:         %d\n",  devProp.minor);
 	printf("Name:                          %s\n",  devProp.name);
+	printf("L2 cache size                  %d\n",  devProp.l2CacheSize);
 	printf("Total global memory:           %lu\n",  devProp.totalGlobalMem);
 	printf("Total shared memory per block: %lu\n",  devProp.sharedMemPerBlock);
 	printf("Total registers per block:     %d\n",  devProp.regsPerBlock);

@@ -26,6 +26,7 @@ public slots:
     void load(const QString & filename);
 	void load(const QStringList & files);
 	void run();
+	void reset();
 	
 signals:
 	void refreshed();

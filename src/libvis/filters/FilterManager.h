@@ -7,7 +7,7 @@ template <class T>
 class FilterManager: public IFilter
 {
 public:
-	void process(IImage & image){
+	void process(Image & image){
 		boost::posix_time::ptime mst1 = boost::posix_time::microsec_clock::local_time();
 		filter.process(image);
 		boost::posix_time::ptime mst2 = boost::posix_time::microsec_clock::local_time();

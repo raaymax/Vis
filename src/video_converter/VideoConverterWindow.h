@@ -5,6 +5,7 @@
 #include <plotter/Plotter.h>
 #include "VideoConverter.h"
 
+
 namespace Ui{
     class VideoConverterWindow;
 }
@@ -15,8 +16,18 @@ class VideoConverterWindow : public QMainWindow
 public:
     explicit VideoConverterWindow( QWidget * parent = 0);
     virtual ~VideoConverterWindow();
+public slots:
+    void chooseSource();
+    void chooseOutput();
+    void setProgress(double);
    
 private:
+    void unlockProcessButtonIfReady();
+    
+    bool isSourceChoosen;
+    bool isOutputChoosen;
+    QString sourceFile;
+    QString outputFile;
     VideoConverter * conv;
     Plot * plot;
     Plotter * plotter;

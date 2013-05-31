@@ -4,6 +4,9 @@
 #include <QMessageBox>
 #include <QLayout>
 #include <QPushButton>
+#include <FilterManager.h>
+#include <GpuGrayFilter.h>
+#include <CpuGrayFilter.h>
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 #include "exceptions/IException.h"
@@ -32,7 +35,9 @@ MainWindow::MainWindow(QWidget * parent):
     ui->horizontalLayout->addWidget(gpuViewer);
     ui->horizontalLayout->addWidget(cpuViewer);
 	QPushButton * button = new QPushButton("Test");
+	QPushButton * reset = new QPushButton("Reset");
 	ui->verticalLayout->addWidget(button);
+	ui->verticalLayout->addWidget(reset);
     fileDialog->setFilter("jpeg (*.jpg , *.jpeg)");
 	fileDialog->setFileMode(QFileDialog::ExistingFiles);
 
@@ -40,7 +45,7 @@ MainWindow::MainWindow(QWidget * parent):
     connect(fileDialog, SIGNAL(fileSelected(QString)),this,SLOT(load(QString)));
 	connect(fileDialog, SIGNAL(filesSelected(QStringList)),this,SLOT(load(QStringList)));
 	connect(button,SIGNAL(pressed()),this,SLOT(run()));
-	
+	connect(reset,SIGNAL(pressed()),this,SLOT(reset()));
 }
 void MainWindow::showFileDialog(){
     fileDialog->show();
@@ -93,7 +98,7 @@ void MainWindow::run(){
 		Image img,img2;
 		for(int i = 0 ; i < times ; i++){
 			img2 = img = source->getImage();
-#if 0
+
 			FilterManager<CpuGrayFilter> filterCPU;
 			filterCPU.process(img);
 			cpuPlot->add(filterCPU.getTime().total_milliseconds());
@@ -106,7 +111,7 @@ void MainWindow::run(){
 			gpuPlot->add(filterGPU.getTime().total_milliseconds());
 			//std::cout<< "filter GPU time:" << filterGPU.getTime().total_microseconds()<<"us" << std::endl;
 #endif
-#endif
+
 			cpuViewer->setImage(img);
 			gpuViewer->setImage(img2);
 			cpuViewer->repaint();
@@ -119,6 +124,10 @@ void MainWindow::run(){
 		msgBox.setText(ex.getMessage());
 		msgBox.exec();
 	}
+}
+
+void MainWindow::reset(){
+	plotter->clearPlots();
 }
 
 

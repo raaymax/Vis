@@ -35,7 +35,7 @@ QT4_WRAP_UI(Viss_UI_HDRS ${Viss_Uis})
 ADD_EXECUTABLE(${CMAKE_PROJECT_NAME} ${Viss_UI_HDRS} ${Viss_SRCS})
 
 
-target_link_libraries(${CMAKE_PROJECT_NAME} ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} plotter libvis filters)
+target_link_libraries(${CMAKE_PROJECT_NAME} ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} plotter libvis)
 
 
 

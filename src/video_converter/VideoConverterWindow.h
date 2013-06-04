@@ -20,12 +20,11 @@ public slots:
     void chooseSource();
     void chooseOutput();
     void setProgress(double);
+    void startProcessing();
    
 private:
     void unlockProcessButtonIfReady();
     
-    bool isSourceChoosen;
-    bool isOutputChoosen;
     QString sourceFile;
     QString outputFile;
     VideoConverter * conv;

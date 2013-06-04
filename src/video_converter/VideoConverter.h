@@ -12,8 +12,18 @@
 class VideoConverter: public QObject{
     Q_OBJECT
 public:
+    VideoConverter();
     VideoConverter(const int & in , const QString & out);
     VideoConverter(const QString & in , const QString & out);
+    
+    
+    void open(const int & in);
+    void open(const QString & in);
+    bool isInputOpened();
+    bool isOutputOpened();
+    bool isOpened();
+    
+    void saveTo(const QString & out);
     
     virtual ~VideoConverter();
     void registerFilter(boost::function<void(cv::Mat & frame)> const & f);
@@ -27,8 +37,8 @@ signals:
     
 protected:
     QList<boost::function<void(cv::Mat & frame)> > filters;
-    cv::VideoCapture cap;
-    cv::VideoWriter wr;
+    cv::VideoCapture * cap;
+    cv::VideoWriter * wr;
 };
 #endif
 

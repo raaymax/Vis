@@ -47,7 +47,7 @@ private:
     
     QString label_;
     Plotter * parent_;
-    
+public:
     static int default_max_points_count;
 };
 

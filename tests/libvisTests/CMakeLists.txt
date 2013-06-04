@@ -1,6 +1,5 @@
 find_package(GTest REQUIRED)
 find_package(Qt4 REQUIRED COMPONENTS QtCore QtGui)
-find_package(CUDA REQUIRED)
 
 include(${QT_USE_FILE})
 
@@ -15,9 +14,8 @@ include_directories(
 
 #file(GLOB_RECURSE test_srcs tests/*.cpp)
 file(GLOB test_srcs "*.cpp")
-list(APPEND test_srcs testFunctions.cu)
 #set(CMAKE_AUTOMOC TRUE)
-cuda_add_executable(libvisTests ${test_srcs})
+add_executable(libvisTests ${test_srcs})
 target_link_libraries(libvisTests 
 	libvis
     ${GTEST_LIBRARIES} 

@@ -1,7 +1,8 @@
 find_package(CUDA)
 find_package(Qt4 REQUIRED)
 
-add_subdirectory(filters)
+
+add_subdirectory(matrix)
 
 include_directories(
 	${CMAKE_CURRENT_SOURCE_DIR}
@@ -11,8 +12,10 @@ include_directories(
 )
 
 set(srcs
+	Image.cpp
 	ImageFactory.cpp
 	ImageSource.cpp
+	testFilter.cpp
 )
 set(cuda_srcs
 	
@@ -30,11 +33,12 @@ else(CUDA_FOUND)
 	add_library(libvis ${srcs})
 endif(CUDA_FOUND)
 
-target_link_libraries(libvis filters libvis_cpu)# libvis_gpu)
+target_link_libraries(libvis libmatrix)# libvis_gpu)
 
 
 #add_subdirectory(gpu)
 
-add_subdirectory(cpu)
+#add_subdirectory(cpu)
+
 
 

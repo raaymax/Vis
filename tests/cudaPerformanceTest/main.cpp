@@ -3,13 +3,7 @@
 #include "config.h"
 #include "gui/ImageWidget.h"
 #include "ImageSource.h"
-#include <CpuGrayFilter.h>
 
-#ifdef USE_CUDA
-#include <GpuGrayFilter.h>
-#endif
-
-#include <FilterManager.h>
 #include "exceptions/IException.h"
 #include "gui/MainWindow.h"
 

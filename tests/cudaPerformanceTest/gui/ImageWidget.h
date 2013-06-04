@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <QLabel>
-#include <IImage.h>
+#include <Image.h>
 
 
 class ImageWidget : public QWidget
@@ -11,7 +11,7 @@ class ImageWidget : public QWidget
 
 public:
     ImageWidget( QWidget * parent = 0);
-	virtual void setImage(const IImage & img);
+	virtual void setImage(const Image & img);
     virtual ~ImageWidget();
 	
 private:

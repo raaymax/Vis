@@ -8,42 +8,60 @@
 #include <exceptions/NoFileException.h>
 
 ImageSource::ImageSource():
-	multi(false)
+	multi(false),
+	type(CPU),
+	image(NULL)
 {
-    image = new  Image(512,512);
+    load();
 }
 
 ImageSource::ImageSource(const QString & filename):
-	multi(false)
+	multi(false),
+	type(CPU),
+	image(NULL)
 {
-	load(filename);
+	files.append(filename);
+	it = files.begin();
+	load();
 }
 
 ImageSource::ImageSource(const QStringList & _files):
 	files(_files),
-	multi(true)
+	multi(true),
+	image(NULL)
 {
 	it = files.begin();
 }
 
 const Image & ImageSource::getImage()
 {	
-	if(multi) next();
 	return *image;
 }
-void ImageSource::next(){
-	QString filename = *it;
-	load(filename);
-	if(++it == files.end()) it = files.begin();
-}
 
-void ImageSource::load(const QString & filename){
-	ImageFactory fac;
-	image = fac.fromFile(filename);
+
+void ImageSource::load(){
+	if(!files.empty()){
+		if( image != NULL){ delete image;image = NULL;}
+		image = factory.fromFile(*it,type);
+	}else{
+		image = factory.black(512,512,type);
+	}
+}
+void ImageSource::loadNext(){
+	if(!files.empty()){
+		if(++it == files.end()) it = files.begin();
+		load();
+	}else{
+		load();
+	}
 }
 
 ImageSource::~ImageSource()
 {
-	
+	delete image;
 }
 
+void ImageSource::setType(MatrixType t){
+	type = t;
+	load();
+}

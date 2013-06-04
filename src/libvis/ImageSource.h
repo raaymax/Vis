@@ -6,7 +6,7 @@
 #include "Image.h"
 #include <QStringList>
 #include <string>
-
+#include "ImageFactory.h"
 
 class ImageSource : public ISource
 {
@@ -16,11 +16,15 @@ public:
     ImageSource(const QString & filename);
 	ImageSource(const QStringList & files);
 	const Image & getImage();
+	void setType(MatrixType t);
+	void loadNext();
     virtual ~ImageSource();
 private:
+	MatrixType type;
+	ImageFactory factory;
 	QStringList files;
-	void next();
-	void load(const QString & filename);
+
+	void load();
 	bool multi;
 	QList<QString>::iterator it;
 	Image * image;

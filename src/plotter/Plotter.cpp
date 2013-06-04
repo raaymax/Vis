@@ -37,7 +37,7 @@ void Plotter::paintEvent( QPaintEvent* )
 	foreach(const Plot *plot , plots_){
         if(max < plot->max()) max = plot->max();
     }
-    qreal a = h/max;
+    qreal a = h/(max);
     int linesCount = 4;
     
 	
@@ -74,7 +74,9 @@ void Plotter::paintEvent( QPaintEvent* )
         const Points & pl = plot->points();
         pen.setColor(plot->color());
         p.setPen(pen);
-        
+		int zxc = h-(plot->average()*a+10);
+		if(zxc < 15) zxc = 15;
+		p.drawText(10,zxc,QString::number(plot->average()));
         
         qreal x = 0;
         qreal y = 0;

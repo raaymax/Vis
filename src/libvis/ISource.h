@@ -1,13 +1,13 @@
 #ifndef ISOURCE_H
 #define ISOURCE_H
 
-#include <IImage.h>
+#include <Image.h>
 
 
 class ISource
 {
 public:
-	virtual const IImage & getImage()=0;
+	virtual const Image & getImage()=0;
 };
 
 #endif // ISOURCE_H

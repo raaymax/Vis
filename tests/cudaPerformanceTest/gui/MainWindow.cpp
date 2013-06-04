@@ -4,14 +4,14 @@
 #include <QMessageBox>
 #include <QLayout>
 #include <QPushButton>
-#include <FilterManager.h>
-#include <GpuGrayFilter.h>
-#include <CpuGrayFilter.h>
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 #include "exceptions/IException.h"
 #include <config.h>
 #include <plotter/Plotter.h>
+#include <Runner.h>
+#include <testFilter.h>
+#include <boost/bind/bind.hpp>
 
 MainWindow::MainWindow(QWidget * parent):
     QMainWindow(parent),
@@ -21,8 +21,9 @@ MainWindow::MainWindow(QWidget * parent):
     fileDialog(new QFileDialog()),
     source(new ImageSource()),
     plotter(new Plotter),
-    times(20)
+    times(1)
 {
+	debug("in");
 	gpuPlot = plotter->createPlot(Qt::red);
 	cpuPlot = plotter->createPlot(Qt::green);
     ui->setupUi(this);
@@ -46,6 +47,7 @@ MainWindow::MainWindow(QWidget * parent):
 	connect(fileDialog, SIGNAL(filesSelected(QStringList)),this,SLOT(load(QStringList)));
 	connect(button,SIGNAL(pressed()),this,SLOT(run()));
 	connect(reset,SIGNAL(pressed()),this,SLOT(reset()));
+	debug("out");
 }
 void MainWindow::showFileDialog(){
     fileDialog->show();
@@ -60,13 +62,14 @@ void MainWindow::paintEvent(QPaintEvent *e)
 void MainWindow::load(const QString & filename){
 	plotter->clearPlots();
     try{
+		debug("in");
         ImageSource * source = new ImageSource(filename); 
         
         if(this->source != NULL)
             delete this->source;
         this->source = source;
 		run();
-		
+		debug("out");
     }catch(IException & ex){
         QMessageBox msgBox;
         msgBox.setText(ex.getMessage());
@@ -77,13 +80,14 @@ void MainWindow::load(const QString & filename){
 void MainWindow::load(const QStringList & files){
 	plotter->clearPlots();
 	try{
+		debug("in");
 		ImageSource * source = new ImageSource(files); 
 		
 		if(this->source != NULL)
 			delete this->source;
 		this->source = source;
 //		run();
-		
+		debug("out");
 	}catch(IException & ex){
 		QMessageBox msgBox;
 		msgBox.setText(ex.getMessage());
@@ -92,33 +96,44 @@ void MainWindow::load(const QStringList & files){
 }
 
 void MainWindow::run(){
+	debug("init");
+	TestFilter cpuFilter(CPU);
+	debug("init cpu done");
+	TestFilter gpuFilter(GPU);
+	debug("init done");
 	if(source==NULL) return;
 	try{
-	
-		Image img,img2;
-		for(int i = 0 ; i < times ; i++){
-			img2 = img = source->getImage();
+		debug("in");
 
-			FilterManager<CpuGrayFilter> filterCPU;
-			filterCPU.process(img);
+		for(int i = 0 ; i < times ; i++){
+			
+			source->setType(CPU);
+			Image img = source->getImage();
+		
+			Runner<Image> filterCPU(bind(&TestFilter::process, &cpuFilter, _1));
+			filterCPU.run(img);
 			cpuPlot->add(filterCPU.getTime().total_milliseconds());
 			//std::cout<< "filter CPU time:" << filterCPU.getTime().total_microseconds() <<"us"<< std::endl;
-
-
-#ifdef USE_CUDA      
-			FilterManager<GpuGrayFilter> filterGPU;
-			filterGPU.process(img2);
+//#if 0
+//#ifdef USE_CUDA
+			source->setType(GPU);
+			Image img2 = source->getImage();
+			assert(img2.getType() == GPU);
+			
+			Runner<Image> filterGPU(bind(&TestFilter::process, &gpuFilter, _1));
+			filterGPU.run(img2);
 			gpuPlot->add(filterGPU.getTime().total_milliseconds());
+			
 			//std::cout<< "filter GPU time:" << filterGPU.getTime().total_microseconds()<<"us" << std::endl;
-#endif
+//#endif
 
 			cpuViewer->setImage(img);
 			gpuViewer->setImage(img2);
 			cpuViewer->repaint();
 			gpuViewer->repaint();
-			
+			source->loadNext();
 		}
-		
+		debug("out");
 	}catch(IException & ex){
 		QMessageBox msgBox;
 		msgBox.setText(ex.getMessage());

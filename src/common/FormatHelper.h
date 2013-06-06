@@ -9,6 +9,7 @@
 class FormatHelper{
 public:
 	static QImage ImageToQImage(const Image & img){
+		debug("in");
 		Image cpu = img.copy(CPU);
 		QImage tmp(QSize(cpu.width(),cpu.height()), QImage::Format_RGB888);
 		for(int y = 0 ; y < cpu.height() ;y++ ){
@@ -16,10 +17,12 @@ public:
 				tmp.setPixel(x,y,cpu.getPixel(x,y));
 			}
 		}
+		debug("out");
 		return tmp;
 	}
 	
 	static Image QImageToImage(const QImage & qimage,MatrixType t){
+		debug("in");
 		QSize size = qimage.size();
 		Image img(size.width(),size.height(),CPU);
 		
@@ -28,12 +31,9 @@ public:
 				img.channel[0].data[y*size.width() + x] = qRed(qimage.pixel(x,y));
 				img.channel[1].data[y*size.width() + x] = qGreen(qimage.pixel(x,y));
 				img.channel[2].data[y*size.width() + x] = qBlue(qimage.pixel(x,y));
-			}
-			
-		if(t == GPU){
-			img = img.copy(GPU);
-		}
-		return img;
+			}	
+		debug("out");
+		return img.copy(t);;
 	}
 };
 

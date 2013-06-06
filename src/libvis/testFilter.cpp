@@ -10,7 +10,7 @@ TestFilter::TestFilter(MatrixType t):type(t){
 	buf.data[2] = 0.0;
 	
 	buf.data[3] = 1.0;
-	buf.data[4] = 2.0;
+	buf.data[4] = 1.0;
 	buf.data[5] = -1.0;
 	
 	buf.data[6] = 0.0;

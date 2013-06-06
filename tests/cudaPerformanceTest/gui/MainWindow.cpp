@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget * parent):
     fileDialog(new QFileDialog()),
     source(new ImageSource()),
     plotter(new Plotter),
-    times(1)
+    times(10)
 {
 	debug("in");
 	gpuPlot = plotter->createPlot(Qt::red);
@@ -114,9 +114,10 @@ void MainWindow::run(){
 			Runner<Image> filterCPU(bind(&TestFilter::process, &cpuFilter, _1));
 			filterCPU.run(img);
 			cpuPlot->add(filterCPU.getTime().total_milliseconds());
-			//std::cout<< "filter CPU time:" << filterCPU.getTime().total_microseconds() <<"us"<< std::endl;
-//#if 0
-//#ifdef USE_CUDA
+			
+			cpuViewer->setImage(img);
+			cpuViewer->repaint();
+
 			source->setType(GPU);
 			Image img2 = source->getImage();
 			assert(img2.getType() == GPU);
@@ -125,13 +126,11 @@ void MainWindow::run(){
 			filterGPU.run(img2);
 			gpuPlot->add(filterGPU.getTime().total_milliseconds());
 			
-			//std::cout<< "filter GPU time:" << filterGPU.getTime().total_microseconds()<<"us" << std::endl;
-//#endif
 
-			cpuViewer->setImage(img);
 			gpuViewer->setImage(img2);
-			cpuViewer->repaint();
 			gpuViewer->repaint();
+			
+			
 			source->loadNext();
 			debug("loop end");
 		}

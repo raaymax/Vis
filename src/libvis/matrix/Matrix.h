@@ -2,7 +2,12 @@
 #define CUDA_MATRIX_H_
 
 #include <stdio.h>
+
+#ifdef DEBUG
 #define debug(asd) printf("%s:%d %s # %s\n",__FILE__,__LINE__,__FUNCTION__,asd)
+#else
+#define debug(asd)
+#endif
 
 typedef unsigned int uint;
 typedef unsigned char uchar;

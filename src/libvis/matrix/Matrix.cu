@@ -6,7 +6,6 @@
 #include <string.h>
 #include "Matrix.h"
 #include <cuda_runtime_api.h>
-#define DEBUG
 
 #ifdef DEBUG
 #define debug() printf("%s:%d %s#%s\n",__FILE__,__LINE__,__FUNCTION__,cudaGetErrorString(cudaGetLastError()))
@@ -32,6 +31,7 @@ Matrix matrix_create(uint w, uint h , MatrixType type){
 	if(type == CPU){
 		m.data = (float*)malloc(m.size);
 		memset(m.data,0,m.size);
+		debug();
 	}else{
 		cudaMalloc(&m.data,m.size);
 		debug();
@@ -138,18 +138,7 @@ void cuda_convolution(Matrix m , Matrix f, Matrix o){
 	
 }
 
-__global__
-void cuda_normalize(Matrix m){
-	int idx = blockIdx.x*blockDim.x+threadIdx.x;
-	int idy = blockIdx.y*blockDim.y+threadIdx.y;
-	if(idx < m.width && idy < m.height){
-		m.data[idy*m.width+idx] = round(m.data[idy*m.width+idx]);
-		if(m.data[idy*m.width+idx] < 0)
-			m.data[idy*m.width+idx] = 0;
-		else if(m.data[idy*m.width+idx] > 255)
-			m.data[idy*m.width+idx] = 255;
-	}
-}
+
 
 
 
@@ -235,16 +224,33 @@ void matrix_divide(Matrix & A , float val){
 	}
 }
 
+__global__
+void cuda_normalize(Matrix m){
+	int idx = blockIdx.x*blockDim.x+threadIdx.x;
+	int idy = blockIdx.y*blockDim.y+threadIdx.y;
+	
+	if(idx < m.width && idy < m.height){
+		float val = round(m.data[idy*m.width+idx]);
+		if(val < 0)
+			val = 0;
+		else if(val > 255)
+			val = 255;
+		
+		m.data[idy*m.width+idx] = val;
+	}
+}
+
 void matrix_normalize(Matrix & A){
 	assert(A.type != NONE);
 	if(A.type == CPU){
 		for(int y = 0 ; y < A.height ;y++ ){
 			for(int x = 0 ; x < A.width ;x++ ){
-				A.data[y*A.width+x] = round(A.data[y*A.width+x]);
-				if(A.data[y*A.width+x] < 0)
-					A.data[y*A.width+x]= 0;
-				else if(A.data[y*A.width+x] > 255)
-					A.data[y*A.width+x] = 255;
+				float val = round(A.data[y*A.width+x]);
+				if(val < 0)
+					val= 0;
+				else if(val > 255)
+					val = 255;
+				A.data[y*A.width+x] = val;
 			}
 		}
 	}else{
@@ -252,7 +258,7 @@ void matrix_normalize(Matrix & A){
 		while(A.height < dy) dy/=2;
 		while(A.width < dx) dx/=2;
 		dim3 t(dx,dy);
-		dim3 b(A.width/dx , A.height/dy);
+		dim3 b((A.width+dx)/dx , (A.height+dy)/dy);
 		cuda_normalize<<<b,t>>>(A);
 		debug();
 	}

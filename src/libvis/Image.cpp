@@ -7,8 +7,11 @@ Image::Image(const Image &i):
 	h(i.h),
 	type(i.type)
 {
+	debug("copy");
+	
 	for(int id = 0 ; id < 3 ; id++)
 		channel[id] = matrix_copy(i.channel[id],type);
+	
 }
 
 Image::Image(MatrixType type_):
@@ -21,14 +24,17 @@ Image::Image(uint width,uint height,MatrixType type_):
 	h(height),
 	type(type_)
 {
+	debug("creating empty");
 	for(int i = 0 ; i < 3 ; i++){
 		channel[i] = matrix_create(w,h,type_);
 	}
 }
 
 Image::~Image(){
-	for(int i = 0 ; i < 3 ; i++)
+	debug("destroying");
+	for(int i = 0 ; i < 3 ; i++){
 		matrix_destroy(channel[i]);
+	}
 }
 
 uint Image::width()const{
@@ -108,7 +114,8 @@ void Image::resize(uint width , uint height){
 }
 QRgb Image::getPixel(uint x,uint y)const{
 	assert(type == CPU);
-//	qDebug() << channel[0].data[y*width()+x] << channel[1].data[y*width()+x] << channel[2].data[y*width()+x];
+// 	if (channel[0].data[y*width()+x] <0 || channel[1].data[y*width()+x] <0 || channel[2].data[y*width()+x] <0)
+// 	qDebug() << channel[0].data[y*width()+x] << channel[1].data[y*width()+x] << channel[2].data[y*width()+x];
 	QColor c(channel[0].data[y*width()+x],channel[1].data[y*width()+x],channel[2].data[y*width()+x]);
 	return c.rgb();
 }

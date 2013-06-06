@@ -25,7 +25,7 @@
         <item>
          <widget class="QLabel" name="sourceLabel">
           <property name="text">
-           <string>TextLabel</string>
+           <string>source file</string>
           </property>
          </widget>
         </item>
@@ -43,7 +43,7 @@
         <item>
          <widget class="QLabel" name="outputLabel">
           <property name="text">
-           <string>TextLabel</string>
+			  <string>output file</string>
           </property>
          </widget>
         </item>

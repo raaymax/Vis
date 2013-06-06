@@ -23,6 +23,9 @@ VideoConverterWindow::VideoConverterWindow(VideoConverter * conv, QWidget * pare
     ui->progressBar->setValue(0);
     connect(ui->sourceButton,SIGNAL(pressed()),this,SLOT(chooseSource()));
     connect(ui->outputButton,SIGNAL(pressed()),this,SLOT(chooseOutput()));
+	connect(conv,SIGNAL(progress(double)),this,SLOT(setProgress(double)));
+	connect(conv,SIGNAL(processingDone()),this,SLOT(processingDone()));
+	connect(ui->processButton,SIGNAL(pressed()),this,SLOT(startProcessing()));
 }
 
 VideoConverterWindow::~VideoConverterWindow()
@@ -39,20 +42,20 @@ void VideoConverterWindow::unlockProcessButtonIfReady(){
             qDebug() << msg;
             return;
         }*/
-        connect(conv,SIGNAL(progress(double)),this,SLOT(setProgress(double)));
-		connect(conv,SIGNAL(processingDone()),this,SLOT(processingDone()));
         ui->processButton->setEnabled(true);
         ui->progressBar->setEnabled(true);
-        connect(ui->processButton,SIGNAL(pressed()),this,SLOT(startProcessing()));
     }
 }
 
 void VideoConverterWindow::startProcessing(){
-    qDebug() << __FUNCTION__;
     conv->processAll();
 }
 
 void VideoConverterWindow::processingDone(){
+	ui->processButton->setEnabled(false);
+	ui->progressBar->setEnabled(false);
+	ui->outputLabel->setText(" ");
+	ui->progressBar->setValue(0);
 	QMessageBox::information(this,"Processing Done","Operation finnished!");
 }
 

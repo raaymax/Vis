@@ -16,6 +16,7 @@ public slots:
     
 private:
     Plotter * plotter;
+	Plot * plot;
     QTimer * timer;
 };
 

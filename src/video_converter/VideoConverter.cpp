@@ -86,4 +86,5 @@ void VideoConverter::saveTo(const QString & out){
              cap->get(CV_CAP_PROP_FPS),
              cv::Size((int)cap->get(CV_CAP_PROP_FRAME_WIDTH),
                       (int)cap->get(CV_CAP_PROP_FRAME_HEIGHT)));
+	cap->set(CV_CAP_PROP_POS_FRAMES,0);
 }

@@ -13,7 +13,7 @@ void filter(QImage & img, Plot * plot){
 	
 	Runner<Image> filterCPU(bind(&TestFilter::process, &test, _1));
 	filterCPU.run(i);
-	plot->add(filterCPU.getTime().total_milliseconds());
+	plot->add(filterCPU.getTime().total_microseconds());
 	
 //	qDebug() << "processing...";
 	test.process(i);

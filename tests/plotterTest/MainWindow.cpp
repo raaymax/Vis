@@ -19,7 +19,7 @@ MainWindow::MainWindow():QMainWindow(){
     plotter->setFrame(true);
     plotter->setScale(true);
     plotter->setScaleFactor(1);
-    plotter->createPlot(Qt::red);
+    plot = plotter->createPlot(Qt::red);
  //   plotter->createPlot(Qt::blue);
     connect(timer,SIGNAL(timeout()),this,SLOT(newPoint()));
     timer->start(1000);
@@ -30,7 +30,7 @@ MainWindow::MainWindow():QMainWindow(){
 void MainWindow::newPoint(){
     int i = 0;
 
-    plotter->getPlots().first()->add(qrand()%100);
+	plot->add(qrand()%50+50);
     
     timer->start(100);
 }

@@ -5,7 +5,10 @@
 #include <QList>
 #include <QColor>
 #include <QPair>
+#include <QPen>
 #include "Plot.h"
+
+class QPainter;
 
 class Plotter : public QWidget{
     Q_OBJECT
@@ -36,6 +39,22 @@ public:
 protected:
     void paintEvent( QPaintEvent* );
 private:
+	
+	void initVars(int paddingLeft);
+	void drawBackground(QPainter &p);
+	void drawScale(QPainter &p);
+	void drawPlots(QPainter &p);
+	void drawFrame(QPainter &p);
+	
+	uint w;
+	uint h;
+	uint linesCount;
+	int startPoint;
+	qreal minValue;
+	qreal correction;
+	qreal maxValue;
+	qreal diffValue;
+	QPen plotterPen;
     bool frame_;
     bool scale_;
     qreal scaleFactor_;

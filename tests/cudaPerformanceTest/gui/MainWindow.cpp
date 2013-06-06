@@ -100,12 +100,13 @@ void MainWindow::run(){
 	TestFilter cpuFilter(CPU);
 	debug("init cpu done");
 	TestFilter gpuFilter(GPU);
-	debug("init done");
+	debug("init gpu done");
 	if(source==NULL) return;
 	try{
 		debug("in");
 
 		for(int i = 0 ; i < times ; i++){
+			debug("loop start");
 			
 			source->setType(CPU);
 			Image img = source->getImage();
@@ -132,6 +133,7 @@ void MainWindow::run(){
 			cpuViewer->repaint();
 			gpuViewer->repaint();
 			source->loadNext();
+			debug("loop end");
 		}
 		debug("out");
 	}catch(IException & ex){
@@ -139,6 +141,7 @@ void MainWindow::run(){
 		msgBox.setText(ex.getMessage());
 		msgBox.exec();
 	}
+	debug("exit");
 }
 
 void MainWindow::reset(){

@@ -10,6 +10,7 @@ public:
 private:
 	MatrixType type;
 	float sum;
+	float cor;
 	Matrix test;
 };
 

@@ -135,6 +135,7 @@ void cuda_convolution(Matrix m , Matrix f, Matrix o){
 		}
 		o.data[idy*o.width+idx] = r;
 	}
+	
 }
 
 __global__

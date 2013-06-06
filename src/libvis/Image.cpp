@@ -1,5 +1,6 @@
 #include <QColor>
 #include "Image.h"
+#include <QDebug>
 
 Image::Image(const Image &i):
 	w(i.w),
@@ -107,6 +108,7 @@ void Image::resize(uint width , uint height){
 }
 QRgb Image::getPixel(uint x,uint y)const{
 	assert(type == CPU);
+//	qDebug() << channel[0].data[y*width()+x] << channel[1].data[y*width()+x] << channel[2].data[y*width()+x];
 	QColor c(channel[0].data[y*width()+x],channel[1].data[y*width()+x],channel[2].data[y*width()+x]);
 	return c.rgb();
 }

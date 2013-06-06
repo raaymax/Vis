@@ -14,7 +14,7 @@ class VideoConverterWindow : public QMainWindow
 {
     Q_OBJECT
 public:
-    explicit VideoConverterWindow( QWidget * parent = 0);
+	explicit VideoConverterWindow( VideoConverter * conv,QWidget * parent = 0);
     virtual ~VideoConverterWindow();
 public slots:
     void chooseSource();

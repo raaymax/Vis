@@ -5,8 +5,8 @@ include(${QT_USE_FILE})
 
 set(CMAKE_AUTOMOC TRUE)
 
-set(video_srcs VideoConverterWindow.cpp VideoConverter.cpp)
-set(video_hdrs VideoConverterWindow.h VideoConverter.h)
+set(video_srcs QImageAdapter.cpp VideoConverterWindow.cpp VideoConverter.cpp)
+set(video_hdrs QImageAdapter.h VideoConverterWindow.h VideoConverter.h)
 
 set(video_ui VideoConverterWindow.ui)
 

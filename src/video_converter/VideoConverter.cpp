@@ -31,11 +31,12 @@ void VideoConverter::processFrame()
     cv::Mat frame;
     *cap >> frame;
     if(!filters.empty()){
-    foreach(boost::function<void(cv::Mat & frame)> const & f , filters){
-        f(frame);
-    }
+		foreach(boost::function<void(cv::Mat & frame)> const & f , filters){
+			f(frame);
+		}
     }
     *wr << frame;
+	qDebug()<< (cap->get(CV_CAP_PROP_POS_FRAMES)+1) << "/" << cap->get(CV_CAP_PROP_FRAME_COUNT);
     emit progress((cap->get(CV_CAP_PROP_POS_FRAMES)+1)/cap->get(CV_CAP_PROP_FRAME_COUNT));
     emit frameProcessingDone();
 }

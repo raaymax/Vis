@@ -27,14 +27,16 @@ public:
 	
 	friend class ImageFactory;
 
-protected:
+//TODO: ograniczenia dostępu
 	Image(MatrixType type);
 	Image(uint width,uint height,MatrixType type);
+	
+	Matrix channel[3];
 private:
 	MatrixType type;
 	uint w;
 	uint h;
-	Matrix channel[3];
+	
 };
 
 #endif // IIMAGE_H

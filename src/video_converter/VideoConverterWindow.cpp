@@ -4,12 +4,12 @@
 #include "VideoConverterWindow.h"
 #include "ui_VideoConverterWindow.h"
 
-VideoConverterWindow::VideoConverterWindow( QWidget * parent ):
+VideoConverterWindow::VideoConverterWindow(VideoConverter * conv, QWidget * parent ):
     QMainWindow(parent),
     ui(new Ui::VideoConverterWindow),
     plotter(new Plotter),
     plot(NULL),
-    conv(new VideoConverter)
+    conv(conv)
 {
     ui->setupUi(this);
     plot = plotter->createPlot(Qt::red);

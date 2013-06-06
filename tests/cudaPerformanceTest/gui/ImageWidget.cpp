@@ -1,7 +1,9 @@
 #include "ImageWidget.h"
+#include <FormatHelper.h>
 #include <QLayout>
 #include <QHBoxLayout>
 #include <stdio.h>
+#include <QDebug>
 
 
 ImageWidget::ImageWidget(QWidget * parent ):
@@ -17,15 +19,9 @@ ImageWidget::ImageWidget(QWidget * parent ):
 
 void ImageWidget::setImage(const Image& img)
 {
-	debug("in");
-	Image cpu = img.copy(CPU);
-	QImage tmp(QSize(cpu.width(),cpu.height()), QImage::Format_RGB888);
-	for(int y = 0 ; y < cpu.height() ;y++ ){
-		for(int x = 0 ; x < cpu.width() ;x++ ){
-			tmp.setPixel(x,y,cpu.getPixel(x,y));
-		}
-	}
 	
+	debug(img.getType()==CPU?"in CPU":"in GPU");
+	QImage tmp = FormatHelper::ImageToQImage(img);
 	scene.setPixmap(QPixmap::fromImage(tmp));
 	debug("out");
 }

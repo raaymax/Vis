@@ -16,11 +16,14 @@ class VideoConverterWindow : public QMainWindow
 public:
 	explicit VideoConverterWindow( VideoConverter * conv,QWidget * parent = 0);
     virtual ~VideoConverterWindow();
+	
+	Plot * getPlot(){return plot;}
 public slots:
     void chooseSource();
     void chooseOutput();
     void setProgress(double);
     void startProcessing();
+	void processingDone();
    
 private:
     void unlockProcessButtonIfReady();

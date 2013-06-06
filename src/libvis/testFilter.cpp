@@ -5,17 +5,17 @@ TestFilter::TestFilter(MatrixType t):type(t){
 	const int n = 3;
 	Matrix buf = matrix_create(n,n,CPU);
 	debug("init done");
-	buf.data[0] = 1.0;
-	buf.data[1] = 1.0;
-	buf.data[2] = 0.0;
+	buf.data[0] = -0.5;
+	buf.data[1] = -1.0;
+	buf.data[2] = -0.5;
 	
-	buf.data[3] = 1.0;
-	buf.data[4] = 1.0;
+	buf.data[3] = -1.0;
+	buf.data[4] = 6.0;
 	buf.data[5] = -1.0;
 	
-	buf.data[6] = 0.0;
+	buf.data[6] = -0.5;
 	buf.data[7] = -1.0;
-	buf.data[8] = -1.0;
+	buf.data[8] = -0.5;
 
 	
 	sum = matrix_sum(buf);

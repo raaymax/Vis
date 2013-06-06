@@ -16,7 +16,7 @@ VideoConverterWindow::VideoConverterWindow(VideoConverter * conv, QWidget * pare
     
     ui->plotterWidget->setLayout(new QHBoxLayout);
     ui->plotterWidget->layout()->addWidget(plotter);
-    Plot::default_max_points_count = 181;
+    Plot::default_max_points_count = 1000;
     ui->processButton->setEnabled(false);
     ui->progressBar->setRange(0,100);
     ui->progressBar->setEnabled(false);
@@ -32,14 +32,15 @@ VideoConverterWindow::~VideoConverterWindow()
 
 void VideoConverterWindow::unlockProcessButtonIfReady(){
     if( conv->isOpened()){
+		/*
         try{
             conv = new VideoConverter(sourceFile,outputFile);
         }catch(const char * msg){
             qDebug() << msg;
             return;
-        }
+        }*/
         connect(conv,SIGNAL(progress(double)),this,SLOT(setProgress(double)));
-        
+		connect(conv,SIGNAL(processingDone()),this,SLOT(processingDone()));
         ui->processButton->setEnabled(true);
         ui->progressBar->setEnabled(true);
         connect(ui->processButton,SIGNAL(pressed()),this,SLOT(startProcessing()));
@@ -51,9 +52,14 @@ void VideoConverterWindow::startProcessing(){
     conv->processAll();
 }
 
+void VideoConverterWindow::processingDone(){
+	QMessageBox::information(this,"Processing Done","Operation finnished!");
+}
+
+
 void VideoConverterWindow::setProgress(double progress){
     ui->progressBar->setValue(progress*100);
-    plot->add(progress*100);
+ //   plot->add(progress*100);
 }
 
 void VideoConverterWindow::chooseSource(){

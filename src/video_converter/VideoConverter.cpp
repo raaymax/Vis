@@ -36,7 +36,7 @@ void VideoConverter::processFrame()
 		}
     }
     *wr << frame;
-	qDebug()<< (cap->get(CV_CAP_PROP_POS_FRAMES)+1) << "/" << cap->get(CV_CAP_PROP_FRAME_COUNT);
+//	qDebug()<< (cap->get(CV_CAP_PROP_POS_FRAMES)+1) << "/" << cap->get(CV_CAP_PROP_FRAME_COUNT);
     emit progress((cap->get(CV_CAP_PROP_POS_FRAMES)+1)/cap->get(CV_CAP_PROP_FRAME_COUNT));
     emit frameProcessingDone();
 }
@@ -53,6 +53,7 @@ void VideoConverter::processAll()
     while(!isDone()){
         processFrame();
     }
+    wr->release();
     emit processingDone();
 }
 

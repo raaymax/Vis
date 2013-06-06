@@ -68,7 +68,7 @@ void MainWindow::load(const QString & filename){
         if(this->source != NULL)
             delete this->source;
         this->source = source;
-		run();
+//		run();
 		debug("out");
     }catch(IException & ex){
         QMessageBox msgBox;
@@ -115,8 +115,7 @@ void MainWindow::run(){
 			filterCPU.run(img);
 			cpuPlot->add(filterCPU.getTime().total_milliseconds());
 			
-			cpuViewer->setImage(img);
-			cpuViewer->repaint();
+			
 
 			source->setType(GPU);
 			Image img2 = source->getImage();
@@ -126,8 +125,13 @@ void MainWindow::run(){
 			filterGPU.run(img2);
 			gpuPlot->add(filterGPU.getTime().total_milliseconds());
 			
+			
+			Image original = source->getImage();
 
+			//cpuViewer->setImage(img);
+			cpuViewer->setImage(original);
 			gpuViewer->setImage(img2);
+			cpuViewer->repaint();
 			gpuViewer->repaint();
 			
 			

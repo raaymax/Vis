@@ -1,0 +1,209 @@
+Naukę assemblera warto rozpocząć od wersji 32-bitowej ponieważ jest prostsza a
+i tak bardzo trudno zrozumieć te krzaczki, które nie są w żaden sposób podobne
+do żadnego języka wyższego poziomu. Jak już się opanuje 32-bity to mając
+solidne podstawy można uzupełnić swoją wiedzę i opanować także 64-bity.
+Zacznijmy więc od "najprostszego".
+
+##############################################################################
+								REJESTRY
+##############################################################################
+
+Rejestr jest najszybszym dostępnym rodzajem pamięci w komputerze. 
+W asemblerze na architektórę x86 (ia32) mamy do dyspozycji rejestry o
+rozmiarze 4 bajtów, czyli podwójnego słowa maszynowego
+(double word), czyli 32-bity (a to niespodzianka). Niektóre z nich pełnią
+konkretne role w systemie a inne są ogólnego użytku. W tej lekcji skupimy się
+na 4 najbardziej podstawowych rejestrach:
+%eax
+%ebx
+%ecx
+%edx
+są to rejestry ogólnego przeznaczenia możemy je używać niemal do wszystkiego i
+prawie bez żadnych konsekwencji ;) 
+weźmy taki %eax teraz pod lupę..
+%eax odnosi się do 32-bitów, ale co jeżeli chcielibyśmy się odnieść do tylko
+16? oczywiście jest to możliwe! wystarczy wpisać %ax! a do 8? %al! 
+No OK ale teraz do których bitów konkretnie się odniesiemy?
+Przedstawię to na rysunku:
+to jest nasz rejestr, ma on 4 x 8 bitów
+      8          8          8          8    
++----------+----------+----------+----------+
+|                   %eax                    |
++----------+----------+----------+----------+
+|                     |         %ax         |
++----------+----------+----------+----------+
+|                     |   %ah    |   %al    |
++----------+----------+----------+----------+
+
+Pamiętamy że po prawej stronie mamy bity najmniej znaczące, zupełnie tak jak w
+liczbach dziesiętnych np. liczba 1024 - 4 jest najmniej znacząca, natomiast 1
+(czyli 1000) znaczy najwięcej. tak samo jest w systemie liczb binarnych. Tak
+więc %ax zawiera 16 najmniej znaczących (najniższych) bitów, %al - 8
+// %eax, %ax, %ah, %al - są tym samym rejestrem - tylko odnoszą się do innych
+// bitów
+najniższych. %ah natomiast zawiera 8 bitów które występują zaraz po pierwszych
+8 które zawiera %al - l oznacza (low) czyli niskie a h (high) czyli wysokie. 
+Pewnie zadajecie sobie pytanie dlaczego w tabelce nie ma nazw dla pozostałych
+pól - odpowiedź jest prosta - pozostałe pola nie zostały nazwane i nie ma
+bezpośredniego sposobu żeby się do nich odwołać w inny sposób niż przez %eax.
+A dlaczego nie zostały nazwane? Pewnie było by ich zwyczajnie za dużo
+(szczególnie dla architektóry 64-bitowej gdzie rejestry są jeszcze 2 razy
+dłuższe) ;) 
+Znamy już 4 rejestry! ale teraz co z nimi można zrobić? jakie są dostępne
+operacje?
+Najważniejszą i najczęściej używaną instrukcją jest 'mov', i jak sama nazwa
+wskazuje służy do przenoszenia (a właściwie to do kopiowania).
+
+mov %ecx,%eax
+
+Ta instrukcja kopiuje wszystkie 32-bity zawartości %ecx do %eax (%ecx
+pozostaje bez zmian)
+/*
+ * Skupimy się tutaj na składni AT&T o której ogólnie mało jest informacji ale
+ * zato jest dużo łatwiejsza i daje nam pewne możliwości o których później. ;)
+ */
+a jak chcemy skopiować tylko pierwsze 16-bitów %ecx w miejsce pierwszych
+16-bitów %eax to wystarczy wywołać
+
+mov %cx,%ax
+
+Tutaj także bez zmian pozostanie cały %ecx oraz (UWAGA!) 16 najwyższych bitów
+rejestru %eax!
+
+##############################################################################
+								LICZBY
+##############################################################################
+/*
+ * Będe w dalszej części tego kursu używał programu "as" do kompilacji kodu
+ * assemblerowego (nie koniecznie wprost). Więcej informacji o programie
+ * google -> "using as" -> pierwszy link mamy pełną dokumentację programu.
+ * Jest ona moim zdaniem mało czytelna więc najważniejsze żeczy napiszę w
+ * kursie.
+ */
+
+żeby powiedzieć as-owi że w kodzie (inline) chcemy podać jakąś liczbę musimy
+rozpocząć ciąg od znaku $ i liczby. liczbę możemy podać w notacji dziesiętnej,
+szesnastkowej oraz ósemkowej oraz binarnej. 
+dziesiętna: należy podać znak dolara i liczbę (nie zaczynającą się od zera!)
+Tak zapisaną liczbę możemy "wstawić" do rejestru.
+
+mov $3,%eax
+
+%eax ma teraz wartość 3 ;)
+szesnastkowo: jak w większości języków żeby zapisać liczbę szesnastkową
+wystarczy rozpocząć od 0x czyli np 0x4F5B
+
+mov $0xff,%ah 
+
+Wstawiamy jedynki w miejsce 8 bitów zaczynając od 8 a kończąc na 16 (pozostałe
+bity pozostają bez zmian!)
+
+ósemkowo: zaczynamy liczbę od 0
+
+mov $073,%eax
+
+binarnie: podobnie jak w szesnastkowym z tą różnicą że zamiast "x" mamy "b"
+
+mov $0b11010011,%ax
+
+na razie łatwizna ;) ale to dopiero początek
+
+##############################################################################
+								ETYKIETY
+##############################################################################
+w assemblerze występuje coś takiego jak etykieta - jest to ciąg znaków (nazwa)
+zakończony znakiem ":". Służą one to zaznaczania miejsca w kodzie - są to
+takie nazwy miejsc do których możemy pójść. Aplikacja zamim rozpocznie się
+wykonywać jest wczytywana do pamięci - pamięć jest podzielona na jednakowe 
+obszary - każdy z tych obszarów ma swój unikatowy adres. 
+Taką etykietą możemy sobie nazwać swoją funkcję lub zmienną, a przy każdym
+użyciu takiej etykiety zostanie tak naprawdę podstawiona w jej miejsce vartość
+adresu na który wskazuje. 
+
+
+adres       |    instrukcje
+------------+----------------
+            | main:
+0x80483d4   |   mov $main,%eax
+0x80483d9   |   ret
+
+Powyższy kod jest jednoznaczny z:
+
+0x80483d4   |   mov $0x80483d4 ,%eax
+0x80483d9   |   ret
+
+tylko nie musimy się martwić o to czy podaliśmy dobry adres ;)
+main - nie zajmuje miejsca w pamięci 
+
+
+
+##############################################################################
+								SUFFIXY
+##############################################################################
+
+chyba każda instrukcja może mieć podany suffix. Suffixy mówią nam o tym na
+jakiej wielkości danych instrukcja ma operować. Nie trzeba ich podawać zawsze
+- tylko wtedy kiedy kompilator nie jest w stanie sam stwierdzić jakiej
+wielkości mają być dane na których operujemy. W przypadkach powyżej do
+instrukcji mov nie trzeba było podawać suffixu bo sam rejestr mówił o
+rozmiarze danych - ale nie czasami to nie wystarcza.
+
+dla podstawowego zestawu instrukcju mamy 3 prefixy "l","w" i "b".
+l odnosi się do (large?) (double word) czyli 32-bity, w (word) 16-bitów i b -
+8-bitów czyli bajt.
+
+tak więc powyższe przypadki mogą wyglądać tak:
+
+movb $0xff,%ah
+movw %cx,%ax
+movl $3,%eax
+
+instrukcje zadziałają w tym przypadku dokładnie tak samo jak wcześniej ale
+czasami działanie w zależności od suffixu może się zupełnie zmienić.
+
+
+##############################################################################
+								PROGRAM
+##############################################################################
+
+Dobra dobra - gadam i gadam a dalej żadnego programu nie widać.. żebyście się
+nie zniechęcili za szybko teraz trochę praktyki.. Nie będzie to co prawda
+nawet "hello world" ale zawsze coś na start.
+Tworzymy plik main.s:
+
+.globl main
+.type main,@function
+main:
+	mov $7,%eax 
+	ret
+
+I w ten sposób wozumiemy tylko jedną linijkę ;) 
+
+Teraz kompilacja:
+
+gcc -m32 main.s -o main
+
+(Tak właśnie!! GCC żadne nasm czy jakieś inne badziewie! mamy pożądny
+kompilator!)
+/*
+ * Wcześniej mówiłem że będe korzystał z programu "as" - gcc włąśnie z niego
+ * korzysta żeby skompilować nasz kod i dodatkowo linkuje nasz program 
+ * 
+ * TODO: linkowanie?
+ */
+i uruchamiamy 
+
+./main; echo $?
+
+/*
+ * echo jest tylko po to żeby wypisać kod zwracany przez program
+ * program jest assemblerowym odpowiednikiem programu w C:
+ * 
+ * int main(){
+ *	return 7;
+ * }
+ * 
+ */
+
+
+

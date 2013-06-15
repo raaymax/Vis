@@ -1,3 +1,12 @@
+
+.____           __               __          ____ 
+|    |    ____ |  | __ ____     |__|____    /_   |
+|    |  _/ __ \|  |/ // ___\    |  \__  \    |   |
+|    |__\  ___/|    <\  \___    |  |/ __ \_  |   |
+|_______ \___  >__|_ \\___  >\__|  (____  /  |___|
+        \/   \/     \/    \/\______|    \/       
+
+
 Naukę assemblera warto rozpocząć od wersji 32-bitowej ponieważ jest prostsza a
 i tak bardzo trudno zrozumieć te krzaczki, które nie są w żaden sposób podobne
 do żadnego języka wyższego poziomu. Jak już się opanuje 32-bity to mając
@@ -111,14 +120,19 @@ na razie łatwizna ;) ale to dopiero początek
 ##############################################################################
 								ETYKIETY
 ##############################################################################
+
 w assemblerze występuje coś takiego jak etykieta - jest to ciąg znaków (nazwa)
 zakończony znakiem ":". Służą one to zaznaczania miejsca w kodzie - są to
-takie nazwy miejsc do których możemy pójść. Aplikacja zamim rozpocznie się
-wykonywać jest wczytywana do pamięci - pamięć jest podzielona na jednakowe 
-obszary - każdy z tych obszarów ma swój unikatowy adres. 
+takie nazwy miejsc do których możemy pójść.Tak naprawdę to etykieta przechowuje 
+adres w pamięci.
+/*
+ * Aplikacja zamim rozpocznie się wykonywać jest wczytywana do pamięci - pamięć 
+ * jest podzielona na jednakowe obszary - każdy z tych obszarów ma swój 
+ * unikatowy adres. (o pamięci później)
+ */
 Taką etykietą możemy sobie nazwać swoją funkcję lub zmienną, a przy każdym
-użyciu takiej etykiety zostanie tak naprawdę podstawiona w jej miejsce vartość
-adresu na który wskazuje. 
+użyciu takiej etykiety zostanie tak naprawdę podstawiona w jej miejsce wartość
+adresu.
 
 
 adres       |    instrukcje
@@ -135,7 +149,26 @@ Powyższy kod jest jednoznaczny z:
 tylko nie musimy się martwić o to czy podaliśmy dobry adres ;)
 main - nie zajmuje miejsca w pamięci 
 
+Etykiety mogą mieć zasięg lokalny - tylko w danym pliku - lub globalny - będą 
+widoczne dla kompilatora także z innych plików. 
 
+aby nadać etykiecie zasięg globalny należy użyć dyrektywy
+
+.globl main
+
+teraz kompilator będzie wiedział że w pliku jest etykieta main ;)
+
+##############################################################################
+								DYREKTYWY
+##############################################################################
+Dyrektywy - ciągi znaków zaczynające się od "." -  są to swego rodzaju 
+informacje dla kompilatora - jak ma rozumieć nasz kod. Mają one przeróżne 
+działanie i bez poznania choćby części z nich ani rusz. 
+
+/*
+ * Są to takie odpowiedniki dyrektyw z języka C takich jak #include, #if itp. 
+ */
+Spis wszystkich dyrektyw można znaleźć w "Using As"
 
 ##############################################################################
 								SUFFIXY
@@ -171,25 +204,26 @@ nie zniechęcili za szybko teraz trochę praktyki.. Nie będzie to co prawda
 nawet "hello world" ale zawsze coś na start.
 Tworzymy plik main.s:
 
-.globl main
-.type main,@function
+.globl main             # etykieta jest o zasięgu globalnym, czyli będzie 
+                        # wydoczna poza tym plikiem, bez tego gcc nie znajdzie 
+                        # naszego main-a
 main:
-	mov $7,%eax 
-	ret
+	mov $7,%eax         # rejestry %eax i %edx są używane do zwracania wartości 
+                        # z funkcji
+	ret                 # jak return w c (o tym też później)
 
-I w ten sposób wozumiemy tylko jedną linijkę ;) 
+
 
 Teraz kompilacja:
 
 gcc -m32 main.s -o main
 
-(Tak właśnie!! GCC żadne nasm czy jakieś inne badziewie! mamy pożądny
+(Tak właśnie!! GCC żadne nasm czy fasm! mamy pożądny i dobrze znany
 kompilator!)
 /*
  * Wcześniej mówiłem że będe korzystał z programu "as" - gcc włąśnie z niego
  * korzysta żeby skompilować nasz kod i dodatkowo linkuje nasz program 
- * 
- * TODO: linkowanie?
+ * ale o linkowaniu też później..
  */
 i uruchamiamy 
 
@@ -204,6 +238,38 @@ i uruchamiamy
  * }
  * 
  */
+##############################################################################
+								PODSUMOWANIE
+##############################################################################
+
+Rejestry:
+ są to takie "zmienne" w procesorze o ustalonym rozmiarze.
+32-bitowy procesor <=> 32-bitowe rejestry
+Poznaliśmy 4 podstawowe rejestry %eax, %ebx, %ecx i %edx
+można się odwoływać do poszczególnych części rejestru %eax - do całego, %ax -do 
+dolnej połowy, %al - do bitów 0-7, %ah do bitów 8-15.
+Analogicznie z pozostałymi %ebx,%ecx,%edx (nie ma już "e" ;)) - "a" zmienia się 
+na "b","c","d" ;)
+
+Liczby:
+zaczynają się od znaku "$" 
+dziesiętne:   $123          po $ liczba dziesiętnie bez początkowego zera
+szesnastkowe: $0xAF         po $ 0x i liczba w systemie 16-tkowym
+ósemkowe:     $0123         po $ 0 i liczba w ósemkowym
+binarne:      $0b100011001  po $ 0b i liczba binarnie
+
+Etykiety:
+nazwy miejsc w kodzie
+
+Dyrektywy:
+instrukcje dla kompilatora (google->"using as" tam są wszystkie)
+
+Sufixy:
+Mówią na jakixh danych ma operować dana instrukcja
+
+
+
+
 
 
 

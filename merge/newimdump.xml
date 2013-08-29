@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<IMdump>
+    <header>
+        <log></log>
+    </header>
+
+    <managedObject class="MRBTS" distName="/MRBTS-1" version="LN7.0_1305_001" minor="1.0">
+    </managedObject>
+
+    <managedObject class="LNBTS" distName="/MRBTS-1/RAT-1/LNBTS-1" version="LN7.0_1305_001" minor="1.0">
+        <p name="actHighRrc">true</p>
+    </managedObject>
+</IMdump>
+
+

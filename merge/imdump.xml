@@ -1,0 +1,1286 @@
+<?xml version="1.0"?>
+<IMdump>
+    <managedObject class="MRBTS">
+       <p name="btsId">1</p>
+   </managedObject>
+
+    <managedObject class="RAT" >
+       <p name="rat">Lte</p>
+   </managedObject>
+
+    <managedObject class="LNBTS">
+       <struct name="stateInfo">
+           <p name="operationalState">Enabled</p>
+           <p name="availabilityStatus">Online</p>
+           <p name="usageState">Active</p>
+           <p name="administrativeState">Unlocked</p>
+           <p name="softwareState">Deployed</p>
+       </struct>
+       <p name="restartCause">Unknown</p>
+       <p name="actHighRrc">false</p>
+   </managedObject>
+
+    <managedObject class="BTS_CONF"/>
+
+    <managedObject class="NP" >
+       <p name="scfPath">/ram/scf.xml</p>
+       <p name="vendorFilePath">/ram/vendor.xml</p>
+    </managedObject>
+
+    <managedObject class="FTM" >
+        <struct name="stateInfo">
+            <p name="proceduralStatus">Configured</p>
+        </struct>
+        <p name="transportNetworkIdMainOperator">6</p>
+        <p name="hasDscp">true</p>
+        <p name="dscp">7</p>
+        <p name="omsIpAddress">192.168.255.151</p>
+        <p name="actIpv6">false</p>
+    </managedObject>
+
+    <managedObject class="IPNO" >
+        <p name="transportNetworkId">1</p>
+        <p name="cPlaneIpAddress">192.168.1.1</p>
+        <p name="uPlaneIpAddress">192.168.1.2</p>
+    </managedObject>
+
+    <managedObject class="EQM_L" >
+        <struct name="stateInfo">
+            <p name="operationalState">Enabled</p>
+            <p name="availabilityStatus">Online</p>
+            <p name="usageState">Active</p>
+            <p name="administrativeState">Unlocked</p>
+        </struct>
+    </managedObject>
+
+    <managedObject class="SMOD_L" >
+        <struct name="stateInfo">
+            <p name="operationalState">Enabled</p>
+            <p name="availabilityStatus">Online</p>
+            <p name="usageState">Active</p>
+            <p name="administrativeState">Unlocked</p>
+        </struct>
+        <list name="BBSWITCH_L_DN">
+            <s></s>
+        </list>
+        <list name="DSP_L_DN">
+            <s>/MRBTS-1/LNBTS-1/EQM_L-1/SMOD_L-1/BBU_L-1/DSP_L-1</s>
+            <s>/MRBTS-1/LNBTS-1/EQM_L-1/SMOD_L-1/BBU_L-2/DSP_L-1</s>
+            <s>/MRBTS-1/LNBTS-1/EQM_L-1/SMOD_L-1/BBU_L-3/DSP_L-1</s>
+        </list>
+        <p name="serialNumber">123-123-123</p>
+        <p name="productCode">BTSOM</p>
+        <p name="startupTime">0</p>
+        <p name="mode">Single</p>
+        <p name="ipAddress">127.0.0.1</p>
+        <p name="restartCause">Unknown</p>
+    </managedObject>
+
+    <managedObject class="CCU_L" >
+        <struct name="stateInfo">
+            <p name="operationalState">Enabled</p>
+            <p name="availabilityStatus">Online</p>
+            <p name="usageState">Active</p>
+            <p name="administrativeState">Unlocked</p>
+        </struct>
+        <p name="nodeId">254</p>
+    </managedObject>
+
+    <managedObject class="BBU_L" >
+        <struct name="stateInfo">
+            <p name="operationalState">Enabled</p>
+            <p name="availabilityStatus">Online</p>
+            <p name="usageState">Active</p>
+            <p name="administrativeState">Unlocked</p>
+        </struct>
+        <p name="nodeId">254</p>
+    </managedObject>
+
+    <managedObject class="DSP_L" >
+        <struct name="stateInfo">
+            <p name="operationalState">Enabled</p>
+            <p name="availabilityStatus">Online</p>
+            <p name="usageState">Active</p>
+            <p name="administrativeState">Unlocked</p>
+            <list name="reasoningStatus">
+                <s>PostTestFailed</s>
+            </list>
+        </struct>
+        <p name="nodeId">252</p>
+        <list name="inPortsDN">
+            <s></s>
+        </list>
+        <list name="outPortsDN">
+            <s></s>
+        </list>
+        <list name="inOutPortsDN">
+            <s></s>
+        </list>
+        <list name="transmittersDN">
+            <s></s>
+        </list>
+        <list name="receiversDN">
+            <s></s>
+        </list>
+        <p name="routingTableDN"></p>
+        <p name="hwVariant">TurboNyquist</p>
+    </managedObject>
+
+    <managedObject class="BBTOP_L" >
+        <struct name="stateInfo">
+            <p name="operationalState">Enabled</p>
+            <p name="availabilityStatus">Online</p>
+            <p name="usageState">Active</p>
+            <p name="administrativeState">Unlocked</p>
+        </struct>
+    </managedObject>
+
+    <managedObject class="LCELL" >
+        <struct name="stateInfo">
+            <p name="operationalState">Enabled</p>
+            <p name="availabilityStatus">Online</p>
+            <p name="usageState">Active</p>
+            <p name="administrativeState">Unlocked</p>
+            <p name="proceduralState">initializing</p>
+            <list name="reasoningStatus">
+                <s>NotEnoughHardware</s>
+            </list>
+        </struct>
+        <p name="deployment">FDD_2DspPool</p>
+        <p name="feedback"></p>
+    </managedObject>
+
+    <managedObject class="CHANNEL" >
+        <struct name="stateInfo">
+            <p name="operationalState">Enabled</p>
+            <p name="availabilityStatus">Online</p>
+            <p name="usageState">Active</p>
+            <p name="administrativeState">Unlocked</p>
+        </struct>
+        <p name="nodeId">123</p>
+        <p name="linkClass">Data</p>
+        <p name="priority">1</p>
+        <p name="AntennaDN"></p>
+        <list name="devicesDNInPath">
+            <s>/MRBTS-1/RAT-1/LNBTS-1/EQM_L-1/SMOD_L-1/BBU_L-1</s>
+        </list>
+        <p name="direction">RX</p>
+        <p name="txResourcesNo">0</p>
+        <p name="rxResourcesNo">0</p>
+    </managedObject>
+
+    <managedObject class="MRBTS_A">
+        <p name="realDN"></p>
+        <p name="actEthernetSec">false</p>
+        <p name="mrbtsId">1</p>
+        <p name="resetToTestDedicated">false</p>
+    </managedObject>
+
+    <managedObject class="LNBTS_A">
+        <p name="realDN"></p>
+        <p name="btsName">LTEOU2TL27</p>
+        <p name="act1xCsfb">false</p>
+        <p name="actCMAS">false</p>
+        <p name="actCSFBRedir">Disabled</p>
+        <p name="actCellTrace">false</p>
+        <p name="actCiphering">true</p>
+        <p name="actCompChecks">false</p>
+        <p name="actConvVoice">true</p>
+        <p name="actCplaneOvlHandling">false</p>
+        <p name="actCsfbPsHoToUtra">false</p>
+        <p name="actDLCAggr">false</p>
+        <p name="actDistributedSite">false</p>
+        <p name="actDualBand">false</p>
+        <p name="actDualCarrier">false</p>
+        <p name="actERabModify">true</p>
+        <p name="actETWS">false</p>
+        <p name="actEmerCallRedir">Disabled</p>
+        <p name="actEnhAcAndGbrServices">true</p>
+        <p name="actFlexBbUsage">true</p>
+        <p name="actGsmRedirWithSI">false</p>
+        <p name="actHOtoHrpd">false</p>
+        <p name="actHOtoWcdma">false</p>
+        <p name="actHeNBMobility">false</p>
+        <p name="actHighRrc">false</p>
+        <p name="actHoFromUtran">false</p>
+        <p name="actIMSEmerSessFWAUEs">false</p>
+        <p name="actIMSEmerSessR9">false</p>
+        <p name="actIdleLB">false</p>
+        <p name="actIfHo">disabled</p>
+        <p name="actImmHRPD">false</p>
+        <p name="actImmXrtt">false</p>
+        <p name="actInterFreqLB">false</p>
+        <p name="actIntraFreqLoadBal">false</p>
+        <p name="actLTES1Ho">false</p>
+        <p name="actLocRep">false</p>
+        <p name="actMDTCellTrace">false</p>
+        <p name="actMultBearers">true</p>
+        <p name="actMultGbrBearers">true</p>
+        <p name="actNonGbrServiceDiff">true</p>
+        <p name="actOperatorQCI">false</p>
+        <p name="actOptMmeSelection">false</p>
+        <p name="actPdcpRohc">false</p>
+        <p name="actRIMforGSM">false</p>
+        <p name="actRedirect">enabled</p>
+        <p name="actRfChaining">false</p>
+        <p name="actS1Flex">enabled</p>
+        <p name="actS1OlHandling">true</p>
+        <p name="actSelMobPrf">false</p>
+        <p name="actSrvccToGsm">false</p>
+        <p name="actSrvccToWcdma">false</p>
+        <p name="actSubscriberTrace">false</p>
+        <p name="actUeBasedAnrInterFreqLte">false</p>
+        <p name="actUeBasedAnrIntraFreqLte">false</p>
+        <p name="actUeBasedAnrUtran">false</p>
+        <p name="actZUC">false</p>
+        <p name="acteNACCtoGSM">false</p>
+        <struct name="amRlcPBTab1">
+            <p name="dlPollByte">25kB</p>
+            <p name="ueCategory">1</p>
+            <p name="ulPollByte">50kB</p>
+        </struct>
+        <struct name="amRlcPBTab2">
+            <p name="dlPollByte">125kB</p>
+            <p name="ueCategory">2</p>
+            <p name="ulPollByte">250kB</p>
+        </struct>
+        <struct name="amRlcPBTab3">
+            <p name="dlPollByte">250kB</p>
+            <p name="ueCategory">3</p>
+            <p name="ulPollByte">500kB</p>
+        </struct>
+        <struct name="amRlcPBTab4">
+            <p name="dlPollByte">250kB</p>
+            <p name="ueCategory">4</p>
+            <p name="ulPollByte">750kB</p>
+        </struct>
+        <struct name="amRlcPBTab5">
+            <p name="dlPollByte">375kB</p>
+            <p name="ueCategory">5</p>
+            <p name="ulPollByte">1000kB</p>
+        </struct>
+        <p name="anrIfTRSC">1000</p>
+        <p name="anrLTEIntraRscReportAmount">1</p>
+        <p name="anrLTEIntraRscReportInterval">120ms</p>
+        <p name="anrLTETReportCGI">1050ms</p>
+        <p name="anrOmExtEnable">true</p>
+        <p name="anrRobLevel">middle</p>
+        <p name="anrUtraEcNoThres">2</p>
+        <p name="anrUtraTRCGI">8050ms</p>
+        <p name="b1SupervisionOffset">1000</p>
+        <p name="caMinDlAmbr">512</p>
+        <struct name="cipherPrefL">
+            <p name="eea0">9</p>
+            <p name="eea1">2</p>
+            <p name="eea2">1</p>
+            <p name="eea3">8</p>
+        </struct>
+        <p name="congWeightAlg">qciPrio</p>
+        <p name="cqiAperPollT">2</p>
+        <p name="cqiCompSmRi1Cl">0.0</p>
+        <p name="cqiCompSmRi1Ol">0.0</p>
+        <p name="cqiCompTdRi2Cl">0.0</p>
+        <p name="cqiCompTdRi2Ol">0.0</p>
+        <p name="cycPrefix">normal</p>
+        <p name="defProfIdxAM">2</p>
+        <p name="defProfIdxUM">104</p>
+        <p name="dlOlqcDeltaCqiIni">0.0</p>
+        <p name="dlOlqcDeltaCqiMax">0.0</p>
+        <p name="dlOlqcDeltaCqiMin">-1.35000000000000008882</p>
+        <p name="dlOlqcDeltaCqiStepUp">0.000125000000000000002602</p>
+        <p name="dlSynchBoost">false</p>
+        <p name="dlamcTHistCqi">1000</p>
+        <p name="dlsFdPfSchAvgC">200</p>
+        <p name="dlsOldtcStepUp">0.0500000000000000027756</p>
+        <p name="dlsTputAvgT">50</p>
+        <p name="drbAmMxRtxTh">6</p>
+        <p name="drbIdThreshold">2</p>
+        <p name="emergencyArp">1</p>
+        <p name="enaDrxRepGra">false</p>
+        <p name="enaDrxWactDl">true</p>
+        <p name="enaDrxWactUl">true</p>
+        <p name="enaDrxWcqiDl">false</p>
+        <p name="enableAutoLock">Enabled</p>
+        <p name="enableGrflShdn">Enabled</p>
+        <p name="enablePhichCtrlUl">true</p>
+        <p name="enbName">LTEOU2TL27</p>
+        <p name="etwsPrimNotifBcDur">60</p>
+        <p name="hopBwPusch">1</p>
+        <p name="hysteresisLoadDlGBR">2</p>
+        <p name="hysteresisLoadPDCCH">2</p>
+        <p name="hysteresisLoadPUCCH">2</p>
+        <p name="hysteresisLoadUlGBR">2</p>
+        <p name="iFLBLoadExchangePeriod">1000ms</p>
+        <p name="iFLBLoadFilCoeff">4</p>
+        <p name="ilMinDatvolUl">560</p>
+        <struct name="integrityPrefL">
+            <p name="eia0">1</p>
+            <p name="eia1">9</p>
+            <p name="eia2">9</p>
+            <p name="eia3">8</p>
+        </struct>
+        <p name="keyRefrMarg">50000</p>
+        <struct name="lBFastProfile">
+            <p name="kLoad">4</p>
+            <p name="nLoadDlGBR">1200</p>
+            <p name="nLoadPDCCH">1200</p>
+            <p name="nLoadPUCCH">1200</p>
+            <p name="nLoadUlGBR">1200</p>
+            <p name="tChangeMobilityAck">60</p>
+            <p name="tChangeMobilityReq">5</p>
+            <p name="tLoadMeasRRM">60</p>
+        </struct>
+        <struct name="lBMediumProfile">
+            <p name="kLoad">4</p>
+            <p name="nLoadDlGBR">1200</p>
+            <p name="nLoadPDCCH">1200</p>
+            <p name="nLoadPUCCH">1200</p>
+            <p name="nLoadUlGBR">1200</p>
+            <p name="tChangeMobilityAck">60</p>
+            <p name="tChangeMobilityReq">5</p>
+            <p name="tLoadMeasRRM">60</p>
+        </struct>
+        <struct name="lBSlowProfile">
+            <p name="kLoad">4</p>
+            <p name="nLoadDlGBR">1200</p>
+            <p name="nLoadPDCCH">1200</p>
+            <p name="nLoadPUCCH">1200</p>
+            <p name="nLoadUlGBR">1200</p>
+            <p name="tChangeMobilityAck">60</p>
+            <p name="tChangeMobilityReq">5</p>
+            <p name="tLoadMeasRRM">60</p>
+        </struct>
+        <p name="largeCellBeta">4</p>
+        <p name="maxMRnoPciToResolve">50</p>
+        <p name="maxMRnoUtraPciToResolve">50</p>
+        <p name="maxNumPrbSr">4</p>
+        <p name="maxNumPreEmptions">20</p>
+        <p name="maxNumX2LinksIn">64</p>
+        <p name="maxNumX2LinksOut">60</p>
+        <p name="maxS1ResetRetries">10</p>
+        <p name="maxS1SetRetry">10</p>
+        <p name="maxX2ResRetry">10</p>
+        <p name="maxX2SetRetry">10</p>
+        <p name="mcc">244</p>
+        <p name="mediumCellBeta">2__Dot__2</p>
+        <p name="mimoClCqiAvg">0.5</p>
+        <p name="mimoClCqiComp">0.299999999999999988898</p>
+        <p name="mimoClRiAvg">0.5</p>
+        <p name="mimoOlCqiAvg">0.5</p>
+        <p name="mimoOlCqiComp">0.299999999999999988898</p>
+        <p name="mimoOlRiAvg">0.5</p>
+        <p name="minNotActivatedUtraRSCFS">24</p>
+        <p name="mnc">9</p>
+        <p name="mncLength">2</p>
+        <p name="moProfileSelect">spid</p>
+        <p name="nCqiDtx">50</p>
+        <p name="nCqiRec">2</p>
+        <p name="nHO">60</p>
+        <p name="nRimRirG">3</p>
+        <p name="npdschEpreOff">0__Space__dB</p>
+        <p name="nullFallback">true</p>
+        <p name="numOfUEforIntraLB">25</p>
+        <p name="offLoadDlGBR">10</p>
+        <p name="offLoadPDCCH">10</p>
+        <p name="offLoadPUCCH">10</p>
+        <p name="offLoadUlGBR">10</p>
+        <p name="operationalState">onAir</p>
+        <p name="ovlIpcPoolUsageL2">75</p>
+        <p name="ovlOccurrences">3</p>
+        <p name="ovlThrOvl1">10</p>
+        <p name="ovlThrOvl2">30</p>
+        <p name="ovlTimer">10</p>
+        <p name="p0UePucch">0</p>
+        <p name="p0UePusch">0</p>
+        <p name="pbrNonGbr">8kBps</p>
+        <p name="pdcchClComp">0.299999999999999988898</p>
+        <p name="pdcchCqiAvg">0.5</p>
+        <p name="pdcchCqiHist">320</p>
+        <p name="pdcchLowAggTh">0.0250000000000000013878</p>
+        <p name="pdcchOlComp">0.299999999999999988898</p>
+        <p name="pdcchPcBoost">0.400000000000000022204</p>
+        <p name="pdcchPcRed">0.599999999999999977796</p>
+        <p name="pdcchPcReloc">0.299999999999999988898</p>
+        <struct name="pdcchUlDlPrio">
+            <p name="pdcchUlDlPrioTag1">91</p>
+            <p name="pdcchUlDlPrioTag10">37</p>
+            <p name="pdcchUlDlPrioTag11">31</p>
+            <p name="pdcchUlDlPrioTag12">12</p>
+            <p name="pdcchUlDlPrioTag13">19</p>
+            <p name="pdcchUlDlPrioTag14">13</p>
+            <p name="pdcchUlDlPrioTag15">91</p>
+            <p name="pdcchUlDlPrioTag16">91</p>
+            <p name="pdcchUlDlPrioTag2">91</p>
+            <p name="pdcchUlDlPrioTag3">91</p>
+            <p name="pdcchUlDlPrioTag4">91</p>
+            <p name="pdcchUlDlPrioTag5">91</p>
+            <p name="pdcchUlDlPrioTag6">91</p>
+            <p name="pdcchUlDlPrioTag7">91</p>
+            <p name="pdcchUlDlPrioTag8">91</p>
+            <p name="pdcchUlDlPrioTag9">91</p>
+        </struct>
+        <struct name="pdcpProf1">
+            <p name="pdcpProfileId">1</p>
+            <p name="statusRepReq">3</p>
+            <p name="tDiscard">750ms</p>
+        </struct>
+        <struct name="pdcpProf101">
+            <p name="pdcpProfileId">101</p>
+            <p name="rohcMaxCid">4</p>
+            <p name="snSize">7bit</p>
+            <p name="tDiscard">100ms</p>
+        </struct>
+        <struct name="pdcpProf102">
+            <p name="pdcpProfileId">102</p>
+            <p name="snSize">7bit</p>
+            <p name="tDiscard">150ms</p>
+        </struct>
+        <struct name="pdcpProf103">
+            <p name="pdcpProfileId">103</p>
+            <p name="snSize">12bit</p>
+            <p name="tDiscard">100ms</p>
+        </struct>
+        <struct name="pdcpProf104">
+            <p name="pdcpProfileId">104</p>
+            <p name="snSize">12bit</p>
+            <p name="tDiscard">500ms</p>
+        </struct>
+        <struct name="pdcpProf2">
+            <p name="pdcpProfileId">2</p>
+            <p name="statusRepReq">3</p>
+            <p name="tDiscard">750ms</p>
+        </struct>
+        <struct name="pdcpProf3">
+            <p name="pdcpProfileId">3</p>
+            <p name="statusRepReq">3</p>
+            <p name="tDiscard">750ms</p>
+        </struct>
+        <struct name="pdcpProf4">
+            <p name="pdcpProfileId">4</p>
+            <p name="statusRepReq">3</p>
+            <p name="tDiscard">750ms</p>
+        </struct>
+        <struct name="pdcpProf5">
+            <p name="pdcpProfileId">5</p>
+            <p name="statusRepReq">3</p>
+            <p name="tDiscard">750ms</p>
+        </struct>
+        <p name="prioHarqDl">1000</p>
+        <p name="prioHarqUl">100</p>
+        <p name="prioSrUl">50</p>
+        <p name="prioSrbDl">10</p>
+        <p name="prioSrbUl">10</p>
+        <p name="prioTopoHO">all__Space__equal</p>
+        <p name="prohibitLBHOTimer">10s</p>
+        <p name="prohibitPsHOtoWcdma">false</p>
+        <p name="puschHopOffset">6</p>
+        <p name="pwsWithEmAreaId">false</p>
+        <struct name="qciTab1">
+            <p name="delayTarget">80ms</p>
+            <p name="drxProfileIndex">2</p>
+            <p name="dscp">46</p>
+            <p name="enforceTtiBundling">true</p>
+            <p name="lcgid">1</p>
+            <p name="maxGbrDl">31</p>
+            <p name="maxGbrUl">31</p>
+            <p name="pdcpProfIdx">101</p>
+            <p name="prio">2</p>
+            <p name="qci">1</p>
+            <p name="qciSupp">ENABLE</p>
+            <p name="resType">GBR</p>
+            <p name="rlcMode">RLC_UM</p>
+            <p name="rlcProfIdx">101</p>
+            <p name="schedulBSD">100ms</p>
+            <p name="schedulPrio">5</p>
+        </struct>
+        <struct name="qciTab2">
+            <p name="delayTarget">80ms</p>
+            <p name="drxProfileIndex">2</p>
+            <p name="dscp">26</p>
+            <p name="enforceTtiBundling">false</p>
+            <p name="l2OHFactorDL">16</p>
+            <p name="l2OHFactorUL">35</p>
+            <p name="lcgid">2</p>
+            <p name="maxGbrDl">144</p>
+            <p name="maxGbrUl">144</p>
+            <p name="pdcpProfIdx">102</p>
+            <p name="prio">4</p>
+            <p name="qci">2</p>
+            <p name="qciSupp">ENABLE</p>
+            <p name="resType">GBR</p>
+            <p name="rlcMode">RLC_UM</p>
+            <p name="rlcProfIdx">102</p>
+            <p name="schedulBSD">100ms</p>
+            <p name="schedulPrio">7</p>
+        </struct>
+        <struct name="qciTab3">
+            <p name="delayTarget">80ms</p>
+            <p name="drxProfileIndex">2</p>
+            <p name="dscp">46</p>
+            <p name="enforceTtiBundling">false</p>
+            <p name="l2OHFactorDL">16</p>
+            <p name="l2OHFactorUL">35</p>
+            <p name="lcgid">2</p>
+            <p name="maxGbrDl">128</p>
+            <p name="maxGbrUl">64</p>
+            <p name="pdcpProfIdx">103</p>
+            <p name="prio">3</p>
+            <p name="qci">3</p>
+            <p name="qciSupp">ENABLE</p>
+            <p name="resType">GBR</p>
+            <p name="rlcMode">RLC_UM</p>
+            <p name="rlcProfIdx">103</p>
+            <p name="schedulBSD">100ms</p>
+            <p name="schedulPrio">6</p>
+        </struct>
+        <struct name="qciTab4">
+            <p name="delayTarget">300ms</p>
+            <p name="drxProfileIndex">2</p>
+            <p name="dscp">28</p>
+            <p name="enforceTtiBundling">false</p>
+            <p name="l2OHFactorDL">16</p>
+            <p name="l2OHFactorUL">35</p>
+            <p name="lcgid">2</p>
+            <p name="maxGbrDl">320</p>
+            <p name="maxGbrUl">32</p>
+            <p name="pdcpProfIdx">2</p>
+            <p name="prio">5</p>
+            <p name="qci">4</p>
+            <p name="qciSupp">ENABLE</p>
+            <p name="resType">GBR</p>
+            <p name="rlcMode">RLC_AM</p>
+            <p name="rlcProfIdx">2</p>
+            <p name="schedulBSD">300ms</p>
+            <p name="schedulPrio">8</p>
+        </struct>
+        <struct name="qciTab5">
+            <p name="drxProfileIndex">3</p>
+            <p name="dscp">34</p>
+            <p name="enforceTtiBundling">false</p>
+            <p name="lcgid">0</p>
+            <p name="pdcpProfIdx">1</p>
+            <p name="prio">1</p>
+            <p name="qci">5</p>
+            <p name="qciSupp">ENABLE</p>
+            <p name="resType">nonGBR</p>
+            <p name="rlcMode">RLC_AM</p>
+            <p name="rlcProfIdx">1</p>
+            <p name="schedulBSD">100ms</p>
+            <p name="schedulPrio">9</p>
+            <p name="schedulType">SIGNALLING</p>
+            <p name="schedulWeight">40</p>
+        </struct>
+        <struct name="qciTab6">
+            <p name="drxProfileIndex">3</p>
+            <p name="dscp">18</p>
+            <p name="enforceTtiBundling">false</p>
+            <p name="lcgid">3</p>
+            <p name="pdcpProfIdx">2</p>
+            <p name="prio">6</p>
+            <p name="qci">6</p>
+            <p name="qciSupp">ENABLE</p>
+            <p name="resType">nonGBR</p>
+            <p name="rlcMode">RLC_AM</p>
+            <p name="rlcProfIdx">2</p>
+            <p name="schedulBSD">300ms</p>
+            <p name="schedulPrio">9</p>
+            <p name="schedulWeight">20</p>
+        </struct>
+        <struct name="qciTab7">
+            <p name="drxProfileIndex">3</p>
+            <p name="dscp">20</p>
+            <p name="enforceTtiBundling">false</p>
+            <p name="lcgid">3</p>
+            <p name="pdcpProfIdx">1</p>
+            <p name="prio">7</p>
+            <p name="qci">7</p>
+            <p name="qciSupp">ENABLE</p>
+            <p name="resType">nonGBR</p>
+            <p name="rlcMode">RLC_AM</p>
+            <p name="rlcProfIdx">2</p>
+            <p name="schedulBSD">100ms</p>
+            <p name="schedulPrio">10</p>
+            <p name="schedulWeight">10</p>
+        </struct>
+        <struct name="qciTab8">
+            <p name="drxProfileIndex">3</p>
+            <p name="dscp">10</p>
+            <p name="enforceTtiBundling">false</p>
+            <p name="lcgid">3</p>
+            <p name="pdcpProfIdx">2</p>
+            <p name="prio">8</p>
+            <p name="qci">8</p>
+            <p name="qciSupp">ENABLE</p>
+            <p name="resType">nonGBR</p>
+            <p name="rlcMode">RLC_AM</p>
+            <p name="rlcProfIdx">2</p>
+            <p name="schedulBSD">300ms</p>
+            <p name="schedulPrio">11</p>
+            <p name="schedulWeight">5</p>
+        </struct>
+        <struct name="qciTab9">
+            <p name="drxProfileIndex">3</p>
+            <p name="dscp">0</p>
+            <p name="enforceTtiBundling">false</p>
+            <p name="lcgid">3</p>
+            <p name="pdcpProfIdx">2</p>
+            <p name="prio">9</p>
+            <p name="qci">9</p>
+            <p name="qciSupp">ENABLE</p>
+            <p name="resType">nonGBR</p>
+            <p name="rlcMode">RLC_AM</p>
+            <p name="rlcProfIdx">2</p>
+            <p name="schedulBSD">300ms</p>
+            <p name="schedulPrio">12</p>
+            <p name="schedulWeight">1</p>
+        </struct>
+        <p name="qciWeightAlignDl">10</p>
+        <p name="qciWeightAlignUl">10</p>
+        <p name="raCrntiReuseT">20</p>
+        <p name="raLargeVolUl">512</p>
+        <p name="rachAccessForHoFromUtran">contentionBased</p>
+        <p name="rcAvCstDl">1000</p>
+        <p name="rcAvCstUl">1000</p>
+        <p name="recoveryResetDelay">0</p>
+        <p name="reportTimerIFLBA4">3000ms</p>
+        <struct name="rlcProf1">
+            <p name="pollPdu">64</p>
+            <p name="rlcProfileId">1</p>
+            <p name="tPollRetr">120ms</p>
+            <p name="tProhib">50ms</p>
+            <p name="tReord">50ms</p>
+        </struct>
+        <struct name="rlcProf101">
+            <p name="rlcProfileId">101</p>
+            <p name="snFieldLengthDL">5bit</p>
+            <p name="snFieldLengthUL">5bit</p>
+            <p name="tReord">50ms</p>
+        </struct>
+        <struct name="rlcProf102">
+            <p name="rlcProfileId">102</p>
+            <p name="snFieldLengthDL">5bit</p>
+            <p name="snFieldLengthUL">5bit</p>
+            <p name="tReord">50ms</p>
+        </struct>
+        <struct name="rlcProf103">
+            <p name="rlcProfileId">103</p>
+            <p name="snFieldLengthDL">10bit</p>
+            <p name="snFieldLengthUL">10bit</p>
+            <p name="tReord">50ms</p>
+        </struct>
+        <struct name="rlcProf104">
+            <p name="rlcProfileId">104</p>
+            <p name="snFieldLengthDL">10bit</p>
+            <p name="snFieldLengthUL">5bit</p>
+            <p name="tReord">50ms</p>
+        </struct>
+        <struct name="rlcProf2">
+            <p name="pollPdu">64</p>
+            <p name="rlcProfileId">2</p>
+            <p name="tPollRetr">120ms</p>
+            <p name="tProhib">50ms</p>
+            <p name="tReord">50ms</p>
+        </struct>
+        <struct name="rlcProf3">
+            <p name="pollPdu">64</p>
+            <p name="rlcProfileId">3</p>
+            <p name="tPollRetr">120ms</p>
+            <p name="tProhib">50ms</p>
+            <p name="tReord">50ms</p>
+        </struct>
+        <struct name="rlcProf4">
+            <p name="pollPdu">64</p>
+            <p name="rlcProfileId">4</p>
+            <p name="tPollRetr">120ms</p>
+            <p name="tProhib">50ms</p>
+            <p name="tReord">50ms</p>
+        </struct>
+        <struct name="rlcProf5">
+            <p name="pollPdu">64</p>
+            <p name="rlcProfileId">5</p>
+            <p name="tPollRetr">120ms</p>
+            <p name="tProhib">50ms</p>
+            <p name="tReord">50ms</p>
+        </struct>
+        <p name="rlpDetEndNUl">3</p>
+        <p name="rlpDetEndNoDl">3</p>
+        <p name="rlpDetMaxNUl">1000</p>
+        <p name="rlpDetMaxNoDl">1000</p>
+        <p name="rlpDetMaxTimeDl">20</p>
+        <p name="rohcFullContextCount">1</p>
+        <p name="rohcFullHdCount">3</p>
+        <p name="rohcHdDecomOmodeEnable">true</p>
+        <p name="rohcHdRefreshPeriod">256</p>
+        <p name="rohcK1">1</p>
+        <p name="rohcK2">2</p>
+        <p name="rohcN1">1</p>
+        <p name="rohcN2">2</p>
+        <p name="rrcGuardTimer">2000</p>
+        <p name="rsrInitWaitTmr">90</p>
+        <p name="rsrResTmrFirst">10</p>
+        <p name="s1InducedCellDeactDelayTime">900</p>
+        <p name="s1ResetRspTmr">3.0</p>
+        <p name="s1SetupRspTmr">9.0</p>
+        <p name="sCellActivationCyclePeriod">2s</p>
+        <p name="sCellActivationMethod">nonGBRBufferBased</p>
+        <p name="sCellDeactivationTimereNB">128</p>
+        <p name="sCellpCellHARQFdbkUsage">conservative</p>
+        <p name="shutdownStepAmount">6</p>
+        <p name="shutdownWindow">60</p>
+        <p name="smallCellBeta">2__Dot__2</p>
+        <list name="sonReportTextList">
+            <item>
+                <p name="text">eNBAnrLteNbInfoRemByNbRelMgmt</p>
+                <p name="textId">2</p>
+            </item>
+        </list>
+        <p name="sysTimeCorrectValue">10</p>
+        <p name="tDataFwdEpc">500</p>
+        <p name="tDataFwdS1">250</p>
+        <p name="tDataFwdX2">250</p>
+        <p name="tEstS1Con">16000</p>
+        <p name="tHalfRrcCon">2000</p>
+        <p name="tHoOverallD">20</p>
+        <p name="tInactiveUtraAnr">5</p>
+        <p name="tL2AckRrcRel">800</p>
+        <p name="tRimKaG">150</p>
+        <p name="tRimPollG">150</p>
+        <p name="tRimRirG">5</p>
+        <p name="tS1RelCanG">2000</p>
+        <p name="tS1RelCanL">2000</p>
+        <p name="tS1RelCanU">2000</p>
+        <p name="tS1RelExecDeltL">500</p>
+        <p name="tS1RelExecDeltU">5000</p>
+        <p name="tS1RelOvDeltG">1000</p>
+        <p name="tS1RelOvDeltL">500</p>
+        <p name="tS1RelOvDeltU">1000</p>
+        <p name="tS1RelPrepG">1000</p>
+        <p name="tS1RelPrepL">500</p>
+        <p name="tS1RelPrepU">2000</p>
+        <p name="tX2RelocComp">2000</p>
+        <p name="tX2RelocExcD">70</p>
+        <p name="tX2RelocHold">500</p>
+        <p name="tX2RelocPrep">500</p>
+        <p name="taCmdMaxRetry">10</p>
+        <p name="taOffScheMarg">2.0</p>
+        <p name="tagMarginAM">0</p>
+        <p name="tagMarginUM">0</p>
+        <p name="tagMaxAM">10</p>
+        <p name="tagMaxUM">10</p>
+        <p name="targetLoadDlGBR">50</p>
+        <p name="targetLoadPDCCH">30</p>
+        <p name="targetLoadPUCCH">80</p>
+        <p name="targetLoadUlGBR">20</p>
+        <p name="teNACCDelta">12000</p>
+        <p name="timDelACContPreempt">100</p>
+        <p name="timSuppGtpuErrIndPreempt">500</p>
+        <p name="ttiBundlingCStepUp">0.0100000000000000002082</p>
+        <p name="ttiBundlingDeltaCini">0.0</p>
+        <p name="ttiBundlingDeltaCmax">0.5</p>
+        <p name="ttiBundlingDeltaCmin">-0.5</p>
+        <p name="ttiBundlingDuringHoMeas">false</p>
+        <p name="tx2RelODelta">150</p>
+        <p name="txPathFailureMode">keepCellInService</p>
+        <p name="txPowerScaling">4024</p>
+        <p name="ulGrpHop">false</p>
+        <p name="ulSeqHop">false</p>
+        <p name="ulamcCStepUp">0.0100000000000000002082</p>
+        <p name="ulamcDeltaCini">0.0</p>
+        <p name="ulamcDeltaCmax">0.5</p>
+        <p name="ulamcDeltaCmin">-0.5</p>
+        <p name="ulamcHistMcsT">1000</p>
+        <p name="ulamcInactT">200</p>
+        <p name="ulamcUpdowngrF">1.19999999999999995559</p>
+        <p name="ulatbPhrAvgF">0.0449999999999999983347</p>
+        <p name="ulpcAccuEnable">true</p>
+        <p name="ulpcCchavgtcont">2.0</p>
+        <p name="ulpcCchavgtdisc">5.0</p>
+        <p name="ulpcCumpucchmax">127</p>
+        <p name="ulpcCumpucchmin">-127</p>
+        <p name="ulpcCumpuschmax">127</p>
+        <p name="ulpcCumpuschmin">-127</p>
+        <p name="ulpcRssiMax">0</p>
+        <p name="ulpcRssiMin">-127</p>
+        <p name="ulpcSchavgtcont">2.0</p>
+        <p name="ulpcSchavgtdisc">5.0</p>
+        <p name="ulpcSinrMax">40</p>
+        <p name="ulpcSinrMin">-40</p>
+        <p name="ulpcWfPucchUe">1</p>
+        <p name="ulpcWfPucchcell">1</p>
+        <p name="ulpcWfPuschUe">1</p>
+        <p name="ulpcWfPuschcell">1</p>
+        <p name="ulpcWfSrsUe">1</p>
+        <p name="ulpcWfSrscell">1</p>
+        <p name="ulsInterferenceCst">100</p>
+        <p name="ulsNumConsecutivePhr">3</p>
+        <p name="ulsNumSchedAreaUl">3</p>
+        <p name="ulsSidVolRohcComp">26</p>
+        <p name="ulsSidVolUncomp">83</p>
+        <p name="ulsTputAvgT">50</p>
+        <p name="ulsTxPowDenConst">0.0449999999999999983347</p>
+        <p name="ulsVoipOverhead">10</p>
+        <p name="verySmallCellBeta">2__Dot__2</p>
+        <p name="waitTimeEstCtrlX2Lnk">150s</p>
+        <p name="x2CfUpRspTmr">8.0</p>
+        <p name="x2ResetRspTmr">1.0</p>
+        <p name="x2SetupRspTmr">0.5</p>
+        <p name="rfSharingEnabled">false</p>
+        <p name="actHighPrioServices">false</p>
+        <p name="actMFBI">false</p>
+        <p name="actUlCoMp">false</p>
+        <p name="voiceSuppMatchInd">errorIndication</p>
+    </managedObject>
+
+    <managedObject class="LNCEL_A">
+        <p name="realDN"></p>
+        <p name="LCELL_DN">/MRBTS-1/RAT-1/BBTOP_L-1/LCELL-1</p>
+        <p name="a1TimeToTriggerDeactInterMeas">notUsed</p>
+        <p name="a2TimeToTriggerActGERANMeas">320ms</p>
+        <p name="a2TimeToTriggerActInterFreqMeas">notUsed</p>
+        <p name="a2TimeToTriggerActWcdmaMeas">notUsed</p>
+        <p name="a2TimeToTriggerRedirect">256ms</p>
+        <p name="a3Offset">3.0</p>
+        <p name="a3ReportInterval">240ms</p>
+        <p name="a3TimeToTrigger">320ms</p>
+        <p name="a5ReportInterval">240ms</p>
+        <p name="a5TimeToTrigger">320ms</p>
+        <struct name="acBarOc">
+            <p name="ocAcBarAC">0</p>
+            <p name="ocAcBarTime">8s</p>
+            <p name="ocAcProbFac">95__Percent__</p>
+        </struct>
+        <struct name="acBarSig">
+            <p name="sigAcBarAC">0</p>
+            <p name="sigAcBarTime">8s</p>
+            <p name="sigAcProbFac">95__Percent__</p>
+        </struct>
+        <p name="actDlsOldtc">true</p>
+        <p name="actDlsVoicePacketAgg">true</p>
+        <p name="actDrx">true</p>
+        <p name="actFastMimoSwitch">false</p>
+        <p name="actLdPdcch">false</p>
+        <p name="actModulationSchemeUL">16QAMHighMCS</p>
+        <p name="actOlLaPdcch">true</p>
+        <p name="actOtdoa">false</p>
+        <p name="actPrsTxDiv">true</p>
+        <p name="actRepeaterMode">none</p>
+        <p name="actSmartDrx">false</p>
+        <p name="actSuperCell">false</p>
+        <p name="actTtiBundling">false</p>
+        <p name="actUlLnkAdp">eUlLa</p>
+        <p name="addAUeRrHo">15</p>
+        <p name="addAUeTcHo">10</p>
+        <p name="addEmergencySessions">50</p>
+        <p name="addGbrTrafficRrHo">5</p>
+        <p name="addGbrTrafficTcHo">10</p>
+        <p name="addNumDrbRadioReasHo">35</p>
+        <p name="addNumDrbTimeCriticalHo">60</p>
+        <p name="addNumQci1DrbRadioReasHo">15</p>
+        <p name="addNumQci1DrbTimeCriticalHo">15</p>
+        <p name="addSpectrEmi">1</p>
+        <p name="administrativeState">unlocked</p>
+        <p name="anrUtraRscpThres">47</p>
+        <p name="applyOutOfSyncState">extendedDrxOnly</p>
+        <p name="blankedPucch">0</p>
+        <struct name="celResTiF">
+            <p name="celResTiFHM">0__Dot__5</p>
+            <p name="celResTiFMM">0__Dot__5</p>
+        </struct>
+        <p name="cellBarred">notBarred</p>
+        <p name="cellCapClass">100</p>
+        <p name="cellIndOffServ">0dB</p>
+        <p name="cellReSelPrio">1</p>
+        <p name="cellSrPeriod">20ms</p>
+        <p name="cellType">large</p>
+        <p name="cqiAperEnable">true</p>
+        <p name="cqiAperMode">FBT2</p>
+        <p name="cqiPerNp">20ms</p>
+        <p name="cqiPerSbCycK">1</p>
+        <p name="cqiPerSimulAck">true</p>
+        <struct name="dFListPucch">
+            <p name="dFpucchF1">0</p>
+            <p name="dFpucchF1b">1</p>
+            <p name="dFpucchF2">0</p>
+            <p name="dFpucchF2a">0</p>
+            <p name="dFpucchF2b">0</p>
+        </struct>
+        <p name="dSrTransMax">64n</p>
+        <p name="defPagCyc">64rf</p>
+        <p name="deltaMargin">0</p>
+        <p name="deltaPreMsg3">1</p>
+        <p name="deltaPucchShift">2</p>
+        <p name="deltaTfEnabled">false</p>
+        <p name="dl64QamEnable">true</p>
+        <p name="dlCellPwrRed">0.0</p>
+        <p name="dlChBw">5__Space__MHz</p>
+        <p name="dlInterferenceEnable">false</p>
+        <p name="dlInterferenceLevel">0</p>
+        <p name="dlInterferenceModulation">QPSK</p>
+        <p name="dlMimoMode">Dynamic__Space__Open__Space__Loop__Space__MIMO</p>
+        <p name="dlOlqcEnable">true</p>
+        <p name="dlPathlossChg">3__Space__db</p>
+        <p name="dlPcfichBoost">0.0</p>
+        <p name="dlPhichBoost">0.0</p>
+        <p name="dlRsBoost">0dB</p>
+        <p name="dlTargetBler">1.0</p>
+        <p name="dlamcCqiDef">2</p>
+        <p name="dlamcEnable">true</p>
+        <p name="dlpcMimoComp">0.0</p>
+        <p name="dlsDciCch">DCI__Space__format__Space__1C</p>
+        <p name="dlsFdAlg">PFsch</p>
+        <p name="dlsOldtcTarget">0.979999999999999982236</p>
+        <p name="dlsUsePartPrb">PRBs__Space__with__Space__PSS__Space__or__Space__SSS__Space__and__Space__PBCH__Space__used</p>
+        <p name="drxApplyDeviceType">true</p>
+        <struct name="drxProfile1">
+            <p name="drxProfileIndex">1</p>
+            <p name="drxProfilePriority">45</p>
+        </struct>
+        <struct name="drxProfile101">
+            <p name="drxInactivityT">200</p>
+            <p name="drxLongCycle">160ms</p>
+            <p name="drxOnDuratT">6</p>
+            <p name="drxProfileIndex">101</p>
+            <p name="drxProfilePriority">30</p>
+            <p name="drxRetransT">4</p>
+        </struct>
+        <struct name="drxProfile102">
+            <p name="drxInactivityT">2560</p>
+            <p name="drxLongCycle">1280ms</p>
+            <p name="drxOnDuratT">10</p>
+            <p name="drxProfileIndex">102</p>
+            <p name="drxProfilePriority">30</p>
+            <p name="drxRetransT">16</p>
+        </struct>
+        <struct name="drxProfile103">
+            <p name="drxInactivityT">10</p>
+            <p name="drxLongCycle">160ms</p>
+            <p name="drxOnDuratT">6</p>
+            <p name="drxProfileIndex">103</p>
+            <p name="drxProfilePriority">30</p>
+            <p name="drxRetransT">16</p>
+        </struct>
+        <struct name="drxProfile2">
+            <p name="drxInactivityT">4</p>
+            <p name="drxLongCycle">40ms</p>
+            <p name="drxOnDuratT">6</p>
+            <p name="drxProfileIndex">2</p>
+            <p name="drxProfilePriority">40</p>
+            <p name="drxRetransT">4</p>
+        </struct>
+        <struct name="drxProfile3">
+            <p name="drxInactivityT">10</p>
+            <p name="drxLongCycle">80ms</p>
+            <p name="drxOnDuratT">6</p>
+            <p name="drxProfileIndex">3</p>
+            <p name="drxProfilePriority">30</p>
+            <p name="drxRetransT">4</p>
+        </struct>
+        <struct name="drxProfile4">
+            <p name="drxInactivityT">500</p>
+            <p name="drxLongCycle">320ms</p>
+            <p name="drxOnDuratT">20</p>
+            <p name="drxProfileIndex">4</p>
+            <p name="drxProfilePriority">20</p>
+            <p name="drxRetransT">16</p>
+        </struct>
+        <struct name="drxProfile5">
+            <p name="drxInactivityT">2560</p>
+            <p name="drxLongCycle">2560ms</p>
+            <p name="drxOnDuratT">20</p>
+            <p name="drxProfileIndex">5</p>
+            <p name="drxProfilePriority">10</p>
+            <p name="drxRetransT">16</p>
+        </struct>
+        <struct name="drxSmartProfile2">
+            <p name="drxInactivityT">4</p>
+            <p name="drxLongCycle">40ms</p>
+            <p name="drxOnDuratT">6</p>
+            <p name="drxProfileIndex">2</p>
+            <p name="drxProfilePriority">40</p>
+            <p name="drxRetransT">4</p>
+            <p name="drxShortCycle">20ms</p>
+            <p name="drxShortCycleT">1</p>
+            <p name="smartStInactFactor">124</p>
+        </struct>
+        <struct name="drxSmartProfile3">
+            <p name="drxInactivityT">10</p>
+            <p name="drxLongCycle">80ms</p>
+            <p name="drxOnDuratT">6</p>
+            <p name="drxProfileIndex">3</p>
+            <p name="drxProfilePriority">30</p>
+            <p name="drxRetransT">4</p>
+            <p name="drxShortCycle">40ms</p>
+            <p name="drxShortCycleT">5</p>
+            <p name="smartStInactFactor">6</p>
+        </struct>
+        <struct name="drxSmartProfile4">
+            <p name="drxInactivityT">50</p>
+            <p name="drxLongCycle">320ms</p>
+            <p name="drxOnDuratT">10</p>
+            <p name="drxProfileIndex">4</p>
+            <p name="drxProfilePriority">20</p>
+            <p name="drxRetransT">16</p>
+            <p name="drxShortCycle">80ms</p>
+            <p name="drxShortCycleT">4</p>
+            <p name="smartStInactFactor">4</p>
+        </struct>
+        <struct name="drxSmartProfile5">
+            <p name="drxInactivityT">50</p>
+            <p name="drxLongCycle">2560ms</p>
+            <p name="drxOnDuratT">10</p>
+            <p name="drxProfileIndex">5</p>
+            <p name="drxProfilePriority">10</p>
+            <p name="drxRetransT">16</p>
+            <p name="drxShortCycle">80ms</p>
+            <p name="drxShortCycleT">16</p>
+            <p name="smartStInactFactor">32</p>
+        </struct>
+        <p name="eCallAcBarred">Not__Space__barred</p>
+        <p name="eUlLaAtbPeriod">30</p>
+        <p name="eUlLaBlerAveWin">30</p>
+        <p name="eUlLaDeltaMcs">3</p>
+        <p name="eUlLaLowMcsThr">1</p>
+        <p name="eUlLaLowPrbThr">1</p>
+        <p name="eUlLaPrbIncDecFactor">0.800000000000000044409</p>
+        <p name="earfcnDL">450</p>
+        <p name="earfcnUL">18450</p>
+        <p name="enableAmcPdcch">true</p>
+        <p name="enableBetterCellHo">true</p>
+        <p name="enableCovHo">true</p>
+        <p name="enableDl16Qam">true</p>
+        <p name="enableLowAgg">true</p>
+        <p name="enablePcPdcch">true</p>
+        <p name="eutraCelId">573185</p>
+        <p name="filterCoeff">fc4</p>
+        <p name="filterCoefficientCSFBCpichEcn0">fc4</p>
+        <p name="filterCoefficientCSFBCpichRscp">fc4</p>
+        <p name="filterCoefficientCpichEcn0">fc4</p>
+        <p name="filterCoefficientCpichRscp">fc4</p>
+        <p name="filterCoefficientRSRP">fc4</p>
+        <p name="filterCoefficientRSRQ">fc4</p>
+        <p name="filterCoefficientRSSI">fc2</p>
+        <p name="gbrCongHandling">l2andl3</p>
+        <p name="grpAssigPUSCH">0</p>
+        <p name="harqMaxMsg3">3</p>
+        <p name="harqMaxTrDl">4</p>
+        <p name="harqMaxTrUl">5</p>
+        <p name="harqMaxTrUlTtiBundling">8</p>
+        <p name="hopModePusch">interSubFrame</p>
+        <p name="hysA3Offset">0.0</p>
+        <p name="hysThreshold2GERAN">0.0</p>
+        <p name="hysThreshold2Wcdma">0.0</p>
+        <p name="hysThreshold2a">2.0</p>
+        <p name="hysThreshold3">0.0</p>
+        <p name="hysThreshold4">0.0</p>
+        <p name="idleLBPercentageOfUes">0</p>
+        <p name="ilReacTimerUl">200</p>
+        <p name="inactivityTimer">30</p>
+        <p name="iniMcsDl">4</p>
+        <p name="iniMcsUl">4</p>
+        <p name="iniPrbsUl">10</p>
+        <p name="intrFrqCelRes">allowed</p>
+        <p name="intraPresAntP">true</p>
+        <p name="lcrId">1</p>
+        <p name="loadBalancingProfile">medium</p>
+        <p name="lowerMarginCIO">-10</p>
+        <p name="maxBitrateDl">170000</p>
+        <p name="maxBitrateUl">60000</p>
+        <p name="maxCrPgDl">0.119999999999999995559</p>
+        <p name="maxCrRa4Dl">0.119999999999999995559</p>
+        <p name="maxCrRaDl">0.119999999999999995559</p>
+        <p name="maxCrSibDl">0.260000000000000008882</p>
+        <p name="maxGbrTrafficLimit">75</p>
+        <p name="maxNrSymPdcch">3</p>
+        <p name="maxNumActDrb">270</p>
+        <p name="maxNumActUE">90</p>
+        <p name="maxNumCaConfUeDc">20</p>
+        <p name="maxNumQci1Drb">75</p>
+        <p name="maxNumRrc">240</p>
+        <p name="maxNumRrcEmergency">420</p>
+        <p name="maxNumUeDl">4</p>
+        <p name="maxNumUeUl">4</p>
+        <p name="mbrSelector">OaM</p>
+        <p name="measQuantityCSFBUtra">cpichRSCP</p>
+        <p name="measQuantityUtra">cpichRSCP</p>
+        <p name="mimoClCqiThD">7.0</p>
+        <p name="mimoClCqiThU">8.0</p>
+        <p name="mimoClRiThD">1.39999999999999991118</p>
+        <p name="mimoClRiThU">1.60000000000000008882</p>
+        <p name="mimoOlCqiThD">7.0</p>
+        <p name="mimoOlCqiThU">8.0</p>
+        <p name="mimoOlRiThD">1.39999999999999991118</p>
+        <p name="mimoOlRiThU">1.60000000000000008882</p>
+        <p name="minBitrateDl">30</p>
+        <p name="minBitrateUl">30</p>
+        <p name="mobStateParamNCelChgHgh">8</p>
+        <p name="mobStateParamNCelChgMed">8</p>
+        <p name="mobStateParamTEval">180s</p>
+        <p name="mobStateParamTHystNorm">180s</p>
+        <p name="modPeriodCoeff">8</p>
+        <p name="n1PucchAn">36</p>
+        <p name="n310">n10</p>
+        <p name="n311">n1</p>
+        <p name="nCqiRb">1</p>
+        <p name="offsetFreqIntra">0dB</p>
+        <p name="operationalState">enabled</p>
+        <p name="p0NomPucch">-100</p>
+        <p name="p0NomPusch">-106</p>
+        <p name="pMax">39__Dot__0</p>
+        <p name="pMaxIntraF">33</p>
+        <p name="pMaxOwnCell">33</p>
+        <p name="pagingNb">quarterT</p>
+        <p name="pdcchAggDefUe">4</p>
+        <p name="pdcchAggMsg4">4</p>
+        <p name="pdcchAggPaging">4</p>
+        <p name="pdcchAggPreamb">4</p>
+        <p name="pdcchAggRaresp">4</p>
+        <p name="pdcchAggSib">4</p>
+        <p name="pdcchAlpha">0.800000000000000044409</p>
+        <p name="pdcchCqiShift">-5.0</p>
+        <p name="pdcchHarqTargetBler">1.0</p>
+        <p name="pdcchUlDlBal">0.5</p>
+        <p name="periodicCqiFeedbackType">wideband</p>
+        <struct name="periodicUeMeas">
+            <p name="activateMeas">false</p>
+            <p name="measurementType">periodicIntraFreq</p>
+            <p name="reportAmount">32</p>
+            <p name="reportInterval">10240ms</p>
+        </struct>
+        <p name="phichDur">Normal</p>
+        <p name="phichRes">N__Space____Is____Space__1__DividedBy__6</p>
+        <p name="phyCellId">1</p>
+        <p name="prachCS">12</p>
+        <p name="prachConfIndex">3</p>
+        <p name="prachFreqOff">3</p>
+        <p name="prachHsFlag">false</p>
+        <p name="prachPwrRamp">6dB</p>
+        <p name="preambTxMax">6</p>
+        <p name="primPlmnCellres">Not__Space__Reserved</p>
+        <p name="prsConfigurationIndex">151</p>
+        <p name="prsNumDlFrames">1</p>
+        <p name="prsPowerBoost">0.0</p>
+        <p name="pucchNAnCs">0</p>
+        <p name="puschAckOffI">10</p>
+        <p name="puschCqiOffI">8</p>
+        <p name="puschRiOffI">10</p>
+        <p name="qHyst">1dB</p>
+        <p name="qrxlevmin">-130</p>
+        <p name="qrxlevminintraF">-130</p>
+        <p name="raContResoT">32ms</p>
+        <p name="raLargeMcsUl">5</p>
+        <p name="raMsgPoffGrB">10__Space__dB</p>
+        <p name="raNondedPreamb">40</p>
+        <p name="raPreGrASize">32</p>
+        <p name="raRespWinSize">10</p>
+        <p name="raSmallMcsUl">5</p>
+        <p name="raSmallVolUl">144__Space__bits</p>
+        <p name="rcAmbrMgnDl">1.03000000000000002665</p>
+        <p name="rcAmbrMgnUl">1.02000000000000001776</p>
+        <p name="rcEnableDl">false</p>
+        <p name="rcEnableUl">false</p>
+        <p name="redBwEnDl">false</p>
+        <p name="redBwMaxRbDl">25</p>
+        <p name="redBwMaxRbUl">25</p>
+        <p name="redBwMinRbUl">1</p>
+        <p name="redBwRpaEnUl">false</p>
+        <p name="riEnable">true</p>
+        <p name="riPerM">1</p>
+        <p name="riPerOffset">-1</p>
+        <p name="rootSeqIndex">12</p>
+        <p name="rttCsfbType">forbidden</p>
+        <p name="sIntrasearch">62</p>
+        <p name="sNonIntrsearch">2</p>
+        <p name="siWindowLen">10ms</p>
+        <struct name="sib2Scheduling">
+            <p name="siMessagePeriodicity">160ms</p>
+            <p name="siMessageRepetition">1</p>
+            <p name="siMessageSibType">SIB2</p>
+        </struct>
+        <struct name="sib3Scheduling">
+            <p name="siMessagePeriodicity">320ms</p>
+            <p name="siMessageRepetition">1</p>
+            <p name="siMessageSibType">SIB3</p>
+        </struct>
+        <struct name="spStResPars">
+            <p name="nCellChgHigh">6</p>
+            <p name="nCellChgMed">3</p>
+            <p name="qHystSfHigh">__Minus__4__Space__dB</p>
+            <p name="qHystSfMed">__Minus__4__Space__dB</p>
+            <p name="tEvaluation">60s</p>
+            <p name="tHystNormal">60s</p>
+        </struct>
+        <p name="srbSchedWeightDl">10</p>
+        <p name="srbSchedWeightUl">10</p>
+        <p name="srsConfiguration">1</p>
+        <p name="srsPwrOffset">7</p>
+        <p name="stInactFactor">1</p>
+        <p name="syncSigTxMode">TxDiv</p>
+        <p name="t300">200ms</p>
+        <p name="t301">200ms</p>
+        <p name="t302">8000</p>
+        <p name="t304InterRAT">500ms</p>
+        <p name="t304InterRATGsm">500ms</p>
+        <p name="t304IntraLte">1000ms</p>
+        <p name="t304eNaccGsm">2000ms</p>
+        <p name="t310">2000ms</p>
+        <p name="t311">3000ms</p>
+        <p name="t320">180min</p>
+        <p name="tExtendedWait">300</p>
+        <p name="tPeriodicBsr">10ms</p>
+        <p name="tPeriodicPhr">20sf</p>
+        <p name="tProhibitPhr">0sf</p>
+        <p name="tReTxBsrTime">320__Space__ms</p>
+        <p name="tReselEutr">1</p>
+        <p name="tStoreUeCntxt">2000</p>
+        <p name="taMaxOffset">0.520000000000000017764</p>
+        <p name="taTimer">10240</p>
+        <p name="taTimerMargin">2000</p>
+        <p name="tac">123</p>
+        <p name="threshSrvLow">2</p>
+        <p name="threshold1">90</p>
+        <p name="threshold2GERAN">32</p>
+        <p name="threshold2InterFreq">97</p>
+        <p name="threshold2Wcdma">97</p>
+        <p name="threshold2a">97</p>
+        <p name="threshold3">30</p>
+        <p name="threshold3a">31</p>
+        <p name="threshold4">1</p>
+        <p name="timeToTriggerSfHigh">0__Dot__5</p>
+        <p name="timeToTriggerSfMedium">0__Dot__5</p>
+        <p name="ttiBundlingBlerTarget">6.0</p>
+        <p name="ttiBundlingBlerThreshold">20</p>
+        <p name="ttiBundlingSinrThreshold">1.0</p>
+        <p name="ulChBw">5__Space__MHz</p>
+        <p name="ulCombinationMode">MRC</p>
+        <p name="ulRsCs">0</p>
+        <p name="ulTargetBler">10</p>
+        <p name="ulamcAllTbEn">true</p>
+        <p name="ulamcSwitchPer">30</p>
+        <p name="ulatbEventPer">1</p>
+        <p name="ulpcAlpha">alpha__Space__1</p>
+        <p name="ulpcIniPrePwr">__Minus__98__Space__dBm</p>
+        <p name="ulpcLowlevCch">-103</p>
+        <p name="ulpcLowlevSch">-103</p>
+        <p name="ulpcLowqualCch">1</p>
+        <p name="ulpcLowqualSch">18</p>
+        <p name="ulpcRarespTpc">4</p>
+        <p name="ulpcReadPeriod">50</p>
+        <p name="ulpcUplevCch">-98</p>
+        <p name="ulpcUplevSch">-98</p>
+        <p name="ulpcUpqualCch">4</p>
+        <p name="ulpcUpqualSch">20</p>
+        <p name="ulsFdPrbAssignAlg">MixedFD</p>
+        <p name="ulsMaxPacketAgg">2</p>
+        <p name="ulsMinRbPerUe">3</p>
+        <p name="ulsMinTbs">104</p>
+        <p name="ulsSchedMethod">channel__Space__unaware</p>
+        <p name="upperMarginCIO">10</p>
+        <p name="technology">fdd</p>
+        <p name="actCellCapacityRes">true</p>
+        <p name="actUlpcMethod">PuschOLPucchOL</p>
+        <p name="dlSectorBeamformingMode">Sector__Space__Beamforming__Space__with__Space__static__Space__weights</p>
+        <p name="redBwSgbEnUl">true</p>
+        <p name="redBwSgbGroup">2</p>
+        <p name="redBwSgbSet">2</p>
+    </managedObject>
+</IMdump>

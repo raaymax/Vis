@@ -1,0 +1,26 @@
+<IMdump>
+   <managedObject class="BTS_CONF" distName="/MRBTS-1/RAT-1/LNBTS-1/BTS_CONF-1" version="LN7.0_1305_001" minor="1.0">
+       <p name="currentNp">/MRBTS-1/RAT-1/LNBTS-1/BTS_CONF-1/NP-2</p>
+   </managedObject>
+
+   <managedObject class="NP" distName="/MRBTS-1/RAT-1/LNBTS-1/BTS_CONF-1/NP-1" version="LN7.0_1305_001" minor="1.0"/>
+
+    <managedObject class="NP" distName="/MRBTS-1/RAT-1/LNBTS-1/BTS_CONF-1/NP-2" version="LN7.0_1305_001" minor="1.0">
+        <p name="scfPath">/ram/pathtoscf.xml</p>
+        <p name="vendorFilePath">/ram/pathtovendor.xml</p>
+    </managedObject>
+
+    <managedObject class="NP" distName="/MRBTS-1/RAT-1/LNBTS-1/BTS_CONF-1/NP-3" version="LN7.0_1305_001" minor="1.0"/>
+
+   <managedObject class="IPNO" distName="/MRBTS-1/RAT-1/LNBTS-1/FTM-1/IPNO-1" version="LN7.0_1305_001" minor="1.0">
+       <p name="transportNetworkId">1</p>
+       <p name="cPlaneIpAddress">192.168.1.1</p>
+       <p name="uPlaneIpAddress">192.168.1.2</p>
+   </managedObject>
+
+   <managedObject class="IPNO" distName="/MRBTS-1/RAT-1/LNBTS-1/FTM-1/IPNO-2" version="LN7.0_1305_001" minor="1.0">
+       <p name="transportNetworkId">2</p>
+       <p name="cPlaneIpAddress">192.168.1.3</p>
+       <p name="uPlaneIpAddress">192.168.1.4</p>
+   </managedObject>
+</IMdump>

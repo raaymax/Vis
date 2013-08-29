@@ -1,0 +1,215 @@
+import re
+import os,sys,copy
+
+if os.path.exists("/build/ltesdkroot"):
+    import site
+    site.addsitedir("/build/ltesdkroot/Tools/Tools/python/python-2.7.2/lib/python2.7/site-packages/Jinja2-2.6-py2.7.egg/")
+    site.addsitedir("/build/ltesdkroot/Tools/Tools/python/python-2.7.2/lib/python2.7/site-packages/lxml-2.3.3-py2.7-linux-x86_64.egg/")
+
+from lxml import etree
+
+class Distname:
+    def __init__(self,dn):
+        if len(dn)==0:
+            raise Exception("Invalid object")
+        self.raw = dn
+        result = re.search("(.*/)*([A-Z_]*)-([0-9]*)",self.raw)
+        if len(result.group(1))==0:
+            self.parentDN = ""
+        else:
+            self.parentDN = result.group(1)[:-1]
+        self.className = result.group(2)
+        self.id = result.group(3)
+
+        self.level = -1
+        for c in self.raw:
+            if c == '/':
+                self.level += 1
+
+
+    def hasParent(self):
+        if self.parentDN == "":
+            return False
+        return True
+
+    def __eq__(self, other):
+        return self.raw == other
+
+    def getParent(self):
+        if self.parentDN == "":
+            raise Exception("No parent")
+        return Distname(self.parentDN)
+
+class ManagedObject:
+    @staticmethod
+    def isMo(ob):
+        return ob.tag == 'managedObject'
+
+    def __init__(self,ob):
+        if not ManagedObject.isMo(ob):
+            raise Exception('Object is not MO: %s'%ob.tag)
+        self.object = copy.deepcopy(ob)
+        self.distName = Distname(self.object.attrib.get('distName'))
+        self.className = self.object.attrib.get('class')
+        self.childs = []
+        self.parent = None
+        if self.className != self.distName.className:
+            print("%s has wrong class"%distName)
+            raise Exception('MO has wrong DN or class name')
+
+    def hasParent(self):
+        return self.parent != None
+
+    def getParent(self):
+        return self.parent
+
+    def addChild(self, mo):
+        mo.parent = self
+        self.childs.append(mo)
+
+    def find(self, dn):
+        if self.distName == dn:
+            return self
+        for i in self.childs:
+            if i.distName == dn:
+                return i
+
+            ob = i.find(dn)
+            if ob != None:
+                return ob
+        return None
+    def execute(self, exe):
+        exe.proc(self)
+        for child in self.childs:
+            child.execute(exe)
+
+    def hasParamWithName(self,name):
+        for p in self.object.iterchildren():
+            if p.attrib.get('name') == name:
+                return True
+        return False
+class ManagedObjectBuilder:
+    def __init__(self,defaults):
+        self.defaults = defaults
+    def findClass(self,className):
+        for d in self.defaults:
+            if d.className == className:
+                return d
+        print("Warning: Class %s not found in defaults"%className)
+        return None
+    def create(self,dn,mo=None):
+        default = self.findClass(dn.className)
+        new = etree.Element("managedObject")
+        if default != None:
+            if mo != None:
+                for p in mo.object.iterchildren():
+                    new.append(copy.deepcopy(p))
+            for p in default.object.iterchildren():
+                name = p.attrib.get("name")
+                if mo == None or mo.find(".//[@name='%s']"%name) == None: #FIXME: this line ont work
+                    new.append(p)
+        new.set('distName',dn.raw)
+        new.set('class',dn.className)
+        return ManagedObject(new)
+class TreeBuilder:
+    def __init__(self):
+        self.root = etree.Element("IMdump")
+        self.tree = etree.ElementTree(self.root)
+    def proc(self, mo):
+        print("Test: %s"%mo.distName.raw)
+        self.root.append(copy.deepcopy(mo.object))
+    def get(self):
+        return self.tree
+class IMdump:
+    def __init__(self, defaults,template):
+        self.defaultMOs = []
+        self.parsed_template = etree.parse(template)
+        self.parsed_defaults = etree.parse(defaults)
+        self.defaults_root = self.parsed_defaults.getroot()
+        self.template_root = self.parsed_template.getroot()
+        self.mos = []
+        self.parseDefaults()
+        self.parseTemplates()
+        self.dumpRoot = None
+
+    def parseDefaults(self):
+        for ob in self.defaults_root.iterchildren():
+            try:
+                mo = ManagedObject(ob)
+                self.defaultMOs.append(mo)
+            except Exception as ex:
+                print(ex.args)
+                continue
+        print("Available default MO's:")
+        print(len(self.defaultMOs))
+        self.defaultMOs = sorted(self.defaultMOs, key=lambda mo: mo.distName.level)
+        self.builder = ManagedObjectBuilder(self.defaultMOs)
+    def parseTemplates(self):
+        for ob in self.template_root.iterchildren():
+            try:
+                mo = ManagedObject(ob)
+                self.mos.append(mo)
+            except Exception as ex:
+                print(ex.args)
+                continue
+        
+        
+    def createTree(self):
+        self.mos = sorted(self.mos, key=lambda mo: mo.distName.level)
+        for mo in self.mos:
+            print("Processing: %s"%mo.distName.raw)
+            self.dumpRoot = self.defaultMOs[0]
+            
+            parentDNs = []
+            parent = None
+            if not mo.distName.hasParent():
+                continue
+            parentDN = mo.distName.getParent()
+            first=True
+            while parent == None:
+                parent = self.dumpRoot.find(parentDN)
+                if first:
+                    ob = self.builder.create(mo.distName,mo)
+                print("Debug: %s"%ob.distName.raw)
+                if parent != None:
+                    parent.addChild(ob)
+                    par = parent
+                else:
+                    par = self.builder.create(parentDN)
+                    par.addChild(ob)
+                    mo = par
+                    first = False
+             
+                print("%s in %s"%(mo.distName.raw,par.distName.raw))
+                if par.distName.hasParent():
+                    parentDN = par.distName.getParent()
+                else:
+                    self.dumpRoot = par
+                    print("%s in /"%par.distName.raw)
+
+        #wstawianie do drzewa
+    def create(self):
+        self.createTree()
+        tree = TreeBuilder()
+        self.dumpRoot.execute(tree)
+        #tree = etree.Element("root")
+        print(etree.tostring(tree.get()).decode("utf-8"))
+
+
+
+if __name__ == "__main__":
+    defa = sys.argv[1]
+    tmpl = sys.argv[2]
+  #  result = sys.argv[3]
+    print("Starting..")
+    dump = IMdump(defa,tmpl)
+    dump.create()
+
+
+
+#addDefaultMo(parsed_template.getroot(),""
+#print(defaults)
+#print(findDefault(getType("/MRBTS-1/RAT-1/LNBTS-1/BTS_CONF-1/NP-1/MRBTS_A-1/LNBTS_A-1/LNCEL_A-1")[1]))
+
+#new.append(findDefault(getType("/MRBTS-1/RAT-1/LNBTS-1/BTS_CONF-1/NP-1/MRBTS_A-1/LNBTS_A-1/LNCEL_A-1")[1]))
+
